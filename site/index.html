@@ -310,7 +310,8 @@
   .final-cta .lede { max-width: 32rem; }
 
   /* connections page (now an overlay inside the hero sequence) */
-  #connections-page .wrap { max-width: 1550px; }
+  #connections-page .wrap { max-width: 1550px; position: relative; z-index: 1; }
+  .conn-bg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.9; }
   #connections-page .headline { color: #141414; }
   .conn-layout { display: grid; grid-template-columns: auto 420px; gap: 2.25rem; align-items: start; justify-content: start; }
   .conn-side { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -424,6 +425,7 @@
         </div>
 
         <div class="hero-overlay" id="connections-page">
+          <canvas id="conn-bg-canvas" class="conn-bg-canvas" aria-hidden="true"></canvas>
           <div class="wrap">
             <div class="conn-layout">
               <div class="conn-grid">
@@ -1596,10 +1598,11 @@
   stage.classList.add('js-active');
 
   var REVEAL_AT = 0.28;
-  var OVERLAY_START = 0.5;
+  var OVERLAY_START = 0.6;
+  var OVERLAY_END = 0.82;
 
   function layout() {
-    stage.style.height = (4 * window.innerHeight) + 'px';
+    stage.style.height = (5.6 * window.innerHeight) + 'px';
   }
   layout();
   window.addEventListener('resize', layout);
@@ -1613,9 +1616,9 @@
 
     sticky.classList.toggle('revealed', progress > REVEAL_AT);
 
-    var overlayProgress = progress > OVERLAY_START
-      ? Math.min(1, (progress - OVERLAY_START) / (1 - OVERLAY_START))
-      : 0;
+    var overlayProgress = progress <= OVERLAY_START ? 0
+      : progress >= OVERLAY_END ? 1
+      : (progress - OVERLAY_START) / (OVERLAY_END - OVERLAY_START);
     var y = 100 - overlayProgress * 100;
     overlay.style.transform = 'translateY(' + y + '%)';
   }
@@ -1627,6 +1630,99 @@
     requestAnimationFrame(function () { update(); ticking = false; });
   }, { passive: true });
   window.addEventListener('resize', update);
+})();
+
+(function () {
+  var canvas = document.getElementById('conn-bg-canvas');
+  var stage = document.getElementById('connections-page');
+  if (!canvas || !stage) return;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    var rect = stage.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    var sx = rect.width / (W || rect.width);
+    var sy = rect.height / (H || rect.height);
+    W = rect.width; H = rect.height;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    if (nodes && nodes.length) {
+      nodes.forEach(function (n) { n.x *= sx; n.y *= sy; });
+    }
+  }
+
+  var COUNT = 42;
+  var nodes = [];
+  function seed() {
+    nodes = [];
+    for (var i = 0; i < COUNT; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: (Math.random() - 0.5) * 0.16,
+        r: Math.random() * 2 + 1.6
+      });
+    }
+  }
+
+  resize();
+  seed();
+  if (window.ResizeObserver) {
+    new ResizeObserver(resize).observe(stage);
+  } else {
+    window.addEventListener('resize', resize);
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+
+    nodes.forEach(function (n) {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0) { n.x = 0; n.vx *= -1; }
+      if (n.x > W) { n.x = W; n.vx *= -1; }
+      if (n.y < 0) { n.y = 0; n.vy *= -1; }
+      if (n.y > H) { n.y = H; n.vy *= -1; }
+    });
+
+    ctx.lineWidth = 1;
+    var maxDist = Math.sqrt(W * W + H * H);
+    var NEIGHBORS = 2;
+    for (var i = 0; i < nodes.length; i++) {
+      var dists = [];
+      for (var j = 0; j < nodes.length; j++) {
+        if (j === i) continue;
+        var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        dists.push({ j: j, d: Math.sqrt(dx * dx + dy * dy) });
+      }
+      dists.sort(function (p, q) { return p.d - q.d; });
+      for (var k = 0; k < Math.min(NEIGHBORS, dists.length); k++) {
+        var b = nodes[dists[k].j];
+        var alpha = Math.max(0.08, (1 - dists[k].d / maxDist) * 0.55);
+        ctx.strokeStyle = 'rgba(20,20,20,' + alpha + ')';
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    nodes.forEach(function (n) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(20,20,20,0.75)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 })();
 
 </script>
