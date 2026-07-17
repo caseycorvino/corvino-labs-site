@@ -19,8 +19,6 @@
     --glow-copper: color-mix(in srgb, var(--copper) 45%, transparent);
     --glow-teal: color-mix(in srgb, var(--teal) 45%, transparent);
 
-    --accent: #E3A868;
-
     --font-mono: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     --font-sans: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
@@ -175,7 +173,7 @@
     }
     .hero.js-active .hero-sticky.revealed .circle-reveal { transform: translate(-50%, -50%) scale(1); }
     .hero.js-active .hero-sticky.revealed .hero-panel { color: var(--hero-dark-text); }
-    .hero.js-active .hero-sticky.revealed .rotator { color: #E3A868; }
+    .hero.js-active .hero-sticky.revealed .rotator { color: var(--hero-dark-text); }
     .hero.js-active .hero-sticky.revealed .hero-graph-reveal { opacity: 0.55; }
     .hero.js-active .hero-overlay {
       position: absolute; inset: 0; z-index: 2;
@@ -412,11 +410,11 @@
     transition: border-color .25s ease, background .25s ease, transform .3s cubic-bezier(.2,.8,.3,1.4);
   }
   .ena-check .tick { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #161616; font-size: 0.72rem; font-weight: 700; opacity: 0; transform: scale(0.5); transition: opacity .2s ease, transform .25s cubic-bezier(.2,.8,.3,1.4); }
-  .ena-item.done .ena-check { border-color: #E3A868; background: #E3A868; transform: scale(1.04); }
+  .ena-item.done .ena-check { border-color: #FFFFFF; background: #FFFFFF; transform: scale(1.04); }
   .ena-item.done .ena-check .tick { opacity: 1; transform: scale(1); }
 
   .ena-progress-track { margin-top: 1.5rem; height: 4px; border-radius: 999px; background: #2A2A2A; overflow: hidden; }
-  .ena-progress-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #E3A868, #FFD9A8); transition: width .2s linear; }
+  .ena-progress-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #888888, #FFFFFF); transition: width .2s linear; }
 
   footer { border-top: 1px solid var(--border-soft); padding: 2.4rem 0; }
   .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
@@ -433,6 +431,112 @@
     .so-reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1); }
     .so-reveal.in-view { opacity: 1; transform: translateY(0); }
   }
+
+  /* ---------- nexus concept: horizontal pin stage ---------- */
+  .nx-stage { position: relative; height: 750vh; background: var(--bg-sunken); }
+  @media (max-width: 720px) { .nx-stage { height: auto !important; } }
+  .nx-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  @media (max-width: 720px) { .nx-sticky { position: static; height: auto; overflow: visible; } }
+  .nx-track { display: flex; height: 100vh; will-change: transform; }
+  @media (max-width: 720px) { .nx-track { display: block; height: auto; transform: none !important; } }
+
+  .nx-panel {
+    flex: none; width: 100vw; height: 100vh;
+    display: flex; align-items: center;
+    border-top: 1px solid var(--border-soft);
+    position: relative; overflow: hidden;
+  }
+  @media (max-width: 720px) {
+    .nx-panel { width: 100%; height: auto; min-height: 100vh; padding: 6rem 0; }
+  }
+  .nx-panel .wrap { position: relative; z-index: 1; }
+
+  [data-reveal-at] { opacity: 0; transform: translateY(16px); transition: opacity .5s cubic-bezier(.2,.7,.3,1), transform .5s cubic-bezier(.2,.7,.3,1); }
+  [data-reveal-at].revealed { opacity: 1; transform: translateY(0); }
+  @media (max-width: 720px) { [data-reveal-at] { opacity: 1; transform: none; transition: none; } }
+
+  .nx-intro h1 { font-size: clamp(2rem, 5.5vw, 4.2rem); line-height: 1.06; letter-spacing: -0.02em; max-width: 40rem; }
+  .nx-intro .sub { margin-top: 1.4rem; font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--text-dim); max-width: 32rem; }
+  .nx-scroll-hint { margin-top: 3rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); display: flex; align-items: center; gap: 0.5rem; }
+  .nx-scroll-hint .arrow { display: inline-block; animation: nx-nudge 1.6s ease-in-out infinite; }
+  @keyframes nx-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+  @media (max-width: 720px) { .nx-scroll-hint { display: none; } }
+
+  h2.nx-title { font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.12; letter-spacing: -0.02em; max-width: 30rem; margin-top: 0.9rem; }
+  .nx-lede { margin-top: 1rem; color: var(--text-dim); max-width: 30rem; line-height: 1.6; font-size: 1.02rem; }
+
+  .nx-orgchart { display: flex; flex-direction: column; align-items: center; gap: 2.2rem; margin-top: 1rem; }
+  .nx-org-node {
+    background: var(--bg-raised); border: 1px solid var(--border-soft); border-radius: 10px;
+    padding: 0.9rem 1.1rem; text-align: center; min-width: 9.5rem;
+  }
+  .nx-org-role { font-size: 0.88rem; font-weight: 600; }
+  .nx-org-tag { margin-top: 0.25rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+  .nx-org-root .nx-org-tag { color: var(--copper); }
+  .nx-org-trunk { width: 1px; height: 1.6rem; background: var(--border); }
+  .nx-org-row { display: flex; gap: 1.1rem; position: relative; flex-wrap: wrap; justify-content: center; }
+  .nx-org-row::before { content: ""; position: absolute; top: -1.6rem; left: 8%; right: 8%; height: 1px; background: var(--border); opacity: 0.6; }
+  .nx-org-ai { position: relative; }
+  .nx-org-ai::before { content: ""; position: absolute; top: -1.6rem; left: 50%; width: 1px; height: 1.6rem; background: var(--border); opacity: 0.6; }
+  .nx-org-chips { margin-top: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; max-width: 9rem; }
+  .nx-org-chips span { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.45rem; }
+  @media (max-width: 900px) { .nx-org-row { gap: 0.7rem; } .nx-org-node { min-width: 7.6rem; padding: 0.7rem 0.6rem; } }
+
+  .nx-work-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 3rem; align-items: center; margin-top: 1rem; }
+  @media (max-width: 900px) { .nx-work-layout { grid-template-columns: 1fr; gap: 2rem; } }
+  .kb-board { position: relative; display: flex; gap: 0.9rem; background: var(--bg-raised); border: 1px solid var(--border-soft); border-radius: 14px; padding: 1.1rem; }
+  .kb-col { flex: 1 1 0; min-width: 0; }
+  .kb-col-title { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-soft); margin-bottom: 0.6rem; }
+  .kb-card { background: #1B1B1B; border: 1px solid var(--border-soft); border-radius: 8px; padding: 0.65rem 0.7rem; font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+  .kb-hero {
+    position: absolute; top: 0; left: 0; width: 0;
+    background: #232323; border: 1px solid var(--border); color: var(--text);
+    font-weight: 600; box-shadow: 0 14px 30px -14px rgba(255,255,255,0.16);
+    transition: left .65s cubic-bezier(.2,.7,.3,1), border-color .3s ease, background .3s ease;
+    z-index: 1;
+  }
+  .kb-hero::after { content: "Q3 Campaign Brief"; }
+  .kb-hero.kb-done { border-color: var(--copper); background: #272727; }
+  .kb-hero .kb-tick { display: inline-block; margin-right: 0.4rem; opacity: 0; transition: opacity .3s ease; color: var(--copper); }
+  .kb-hero.kb-done .kb-tick { opacity: 1; }
+  .kb-hero .kb-tick::before { content: "\2713"; }
+
+  .nx-notifs { display: flex; flex-direction: column; gap: 0.8rem; }
+  .nx-notif { background: var(--bg-raised); border: 1px solid var(--border-soft); border-radius: 10px; padding: 0.8rem 0.95rem; display: flex; gap: 0.7rem; align-items: flex-start; }
+  .nx-notif-badge { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--copper); flex: none; padding-top: 0.1rem; }
+  .nx-notif-body { font-size: 0.82rem; color: var(--text-dim); line-height: 1.45; }
+  .nx-notif-body strong { color: var(--text); }
+
+  .nx-apps-layout { margin-top: 1.5rem; }
+  .nx-apps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 15rem)); gap: 0.9rem; }
+  @media (max-width: 600px) { .nx-apps-grid { grid-template-columns: 1fr; } }
+  .nx-app-card { background: var(--bg-raised); border: 1px solid var(--border-soft); border-radius: 10px; padding: 1rem 1.1rem; }
+  .nx-app-name { font-size: 0.92rem; font-weight: 600; }
+  .nx-app-desc { margin-top: 0.3rem; color: var(--text-dim); font-size: 0.8rem; line-height: 1.45; }
+  .nx-app-live { margin-top: 0.7rem; display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+  .nx-app-live .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper); box-shadow: 0 0 6px var(--copper); flex: none; }
+
+  .nx-cost-layout { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 22rem); gap: 3rem; align-items: center; margin-top: 1rem; }
+  @media (max-width: 900px) { .nx-cost-layout { grid-template-columns: 1fr; gap: 2rem; } }
+  .nx-cost-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+  .nx-cost-list li { padding-left: 1.1rem; border-left: 2px solid var(--border); }
+  .nx-cost-list b { display: block; font-size: 0.95rem; }
+  .nx-cost-list p { margin-top: 0.25rem; color: var(--text-dim); font-size: 0.88rem; line-height: 1.55; }
+
+  .nx-cost-card { background: var(--bg-raised); border: 1px solid var(--border-soft); border-radius: 14px; padding: 1.6rem; }
+  .nx-model-row { display: flex; align-items: baseline; justify-content: space-between; }
+  .nx-model-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+  .nx-model-rotator { position: relative; height: 1.3em; overflow: hidden; min-width: 8ch; }
+  .nx-model-item { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; transform: translateY(10%); transition: opacity .5s ease, transform .5s ease; font-weight: 600; color: var(--copper); }
+  .nx-model-item.active { opacity: 1; transform: translateY(0); }
+  .nx-meter { margin-top: 1.4rem; }
+  .nx-meter-row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.35rem; }
+  .nx-meter-track { height: 8px; border-radius: 999px; background: #1E1E1E; overflow: hidden; }
+  .nx-meter-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #555555, #FFFFFF); transition: width .3s linear; }
+  .nx-meter-cap { margin-top: 0.5rem; font-size: 0.72rem; color: var(--text-dim); }
+
+  .nx-partner h2.nx-title { max-width: 34rem; }
+  .nx-partner .nx-lede { max-width: 34rem; }
 </style>
 
 <div class="page">
@@ -447,6 +551,8 @@
       <a href="#skills-rules">Skills &amp; Rules</a>
       <span class="sep">·</span>
       <a href="#enablement">Enablement</a>
+      <span class="sep">·</span>
+      <a href="#nexus">Nexus</a>
     </nav>
     <span class="scroll-chrome-progress">
       <span>Scroll</span>
@@ -575,6 +681,7 @@
               <p class="ena-eyebrow">Enablement</p>
               <h2 class="ena-title">Every employee, fully equipped.</h2>
               <p class="ena-lede">New hire or ten-year veteran — everyone gets installed with the same training, skills, rules, and connections on day one.</p>
+              <a class="offer-link" href="#nexus">See the Nexus Concept &darr;</a>
             </div>
             <div class="ena-terminal">
               <div class="ena-term-bar">
@@ -599,6 +706,180 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nx-stage" id="nexus">
+      <div class="nx-sticky">
+        <div class="nx-track" id="nx-track">
+
+          <section class="nx-panel nx-intro">
+            <div class="wrap">
+              <p class="eyebrow">Nexus Concept</p>
+              <h1>For those that want more than an assistant.</h1>
+              <p class="sub">An AI-employee harness built for scale.</p>
+              <p class="nx-scroll-hint">Scroll to explore <span class="arrow">&rarr;</span></p>
+            </div>
+          </section>
+
+          <section class="nx-panel nx-org">
+            <div class="wrap">
+              <p class="eyebrow">Features</p>
+              <h2 class="nx-title">Every AI employee, fully equipped.</h2>
+              <p class="nx-lede">Skills, connections, memory, and rules — scoped to the role, not the person. Reporting up the same org chart as everyone else.</p>
+              <div class="nx-orgchart">
+                <div class="nx-org-node nx-org-root">
+                  <p class="nx-org-role">Head of Marketing</p>
+                  <p class="nx-org-tag">Human</p>
+                </div>
+                <div class="nx-org-trunk"></div>
+                <div class="nx-org-row">
+                  <div class="nx-org-node nx-org-ai" data-reveal-at="0.12">
+                    <p class="nx-org-role">Content Strategist</p>
+                    <p class="nx-org-tag">AI Employee</p>
+                    <div class="nx-org-chips"><span>Skills</span><span>Connections</span><span>Memory</span><span>Rules</span></div>
+                  </div>
+                  <div class="nx-org-node nx-org-ai" data-reveal-at="0.32">
+                    <p class="nx-org-role">Campaign Analyst</p>
+                    <p class="nx-org-tag">AI Employee</p>
+                    <div class="nx-org-chips"><span>Skills</span><span>Connections</span><span>Memory</span><span>Rules</span></div>
+                  </div>
+                  <div class="nx-org-node nx-org-ai" data-reveal-at="0.52">
+                    <p class="nx-org-role">Social Media Manager</p>
+                    <p class="nx-org-tag">AI Employee</p>
+                    <div class="nx-org-chips"><span>Skills</span><span>Connections</span><span>Memory</span><span>Rules</span></div>
+                  </div>
+                  <div class="nx-org-node nx-org-ai" data-reveal-at="0.72">
+                    <p class="nx-org-role">SEO Specialist</p>
+                    <p class="nx-org-tag">AI Employee</p>
+                    <div class="nx-org-chips"><span>Skills</span><span>Connections</span><span>Memory</span><span>Rules</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="nx-panel nx-work">
+            <div class="wrap">
+              <p class="eyebrow">Meet Where You Work</p>
+              <h2 class="nx-title">No new inbox to check.</h2>
+              <p class="nx-lede">Nexus employees live inside the kanban board, Slack, and email — wherever the work already happens.</p>
+              <div class="nx-work-layout">
+                <div class="kb-board" id="kb-board">
+                  <div class="kb-col">
+                    <p class="kb-col-title">To Do</p>
+                    <div class="kb-card">Ad copy variants</div>
+                  </div>
+                  <div class="kb-col">
+                    <p class="kb-col-title">In Progress</p>
+                    <div class="kb-card">Landing page QA</div>
+                  </div>
+                  <div class="kb-col">
+                    <p class="kb-col-title">Done</p>
+                    <div class="kb-card">Newsletter send</div>
+                  </div>
+                  <div class="kb-card kb-hero" id="kb-hero"><span class="kb-tick"></span></div>
+                </div>
+                <div class="nx-notifs">
+                  <div class="nx-notif" data-reveal-at="0.66">
+                    <span class="nx-notif-badge">Slack</span>
+                    <p class="nx-notif-body"><strong>#marketing</strong> — Q3 campaign brief is ready for review. &#9989;</p>
+                  </div>
+                  <div class="nx-notif" data-reveal-at="0.85">
+                    <span class="nx-notif-badge">Email</span>
+                    <p class="nx-notif-body">FWD'd email received, completing action items before drafting response to client.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="nx-panel nx-apps">
+            <div class="wrap">
+              <p class="eyebrow">Mini Apps</p>
+              <h2 class="nx-title">Need a tool? They'll build it.</h2>
+              <p class="nx-lede">When a workflow needs more than chat, Nexus employees vibe-code small internal apps — deployed and ready for the team to use, no engineering ticket required.</p>
+              <div class="nx-apps-layout">
+                <div class="nx-apps-grid">
+                  <div class="nx-app-card" data-reveal-at="0.12">
+                    <p class="nx-app-name">Expense Tracker</p>
+                    <p class="nx-app-desc">Approve &amp; categorize spend</p>
+                    <p class="nx-app-live"><span class="dot"></span>Live</p>
+                  </div>
+                  <div class="nx-app-card" data-reveal-at="0.32">
+                    <p class="nx-app-name">Q3 Dashboard</p>
+                    <p class="nx-app-desc">Auto-refreshing pipeline report</p>
+                    <p class="nx-app-live"><span class="dot"></span>Live</p>
+                  </div>
+                  <div class="nx-app-card" data-reveal-at="0.52">
+                    <p class="nx-app-name">Lead Scorer</p>
+                    <p class="nx-app-desc">Ranks inbound by fit</p>
+                    <p class="nx-app-live"><span class="dot"></span>Live</p>
+                  </div>
+                  <div class="nx-app-card" data-reveal-at="0.72">
+                    <p class="nx-app-name">Approval Queue</p>
+                    <p class="nx-app-desc">One-click sign-off for contracts</p>
+                    <p class="nx-app-live"><span class="dot"></span>Live</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="nx-panel nx-cost">
+            <div class="wrap">
+              <p class="eyebrow">Built to Run Lean</p>
+              <h2 class="nx-title">Model-agnostic. Cost-optimized by default.</h2>
+              <div class="nx-cost-layout">
+                <div>
+                  <p class="nx-lede">Nexus isn't locked to one model or one pricing model. It routes work to whatever is cheapest and best-fit, automatically.</p>
+                  <ul class="nx-cost-list">
+                    <li data-reveal-at="0.1">
+                      <b>Auto model routing</b>
+                      <p>A cheap model handles the cheap tasks; a frontier model steps in only when it matters.</p>
+                    </li>
+                    <li data-reveal-at="0.35">
+                      <b>Smarter context</b>
+                      <p>Every AI employee loads what the task needs — not the whole company's context window.</p>
+                    </li>
+                    <li data-reveal-at="0.6">
+                      <b>Subscription-first</b>
+                      <p>Flat-rate seats (Claude Code, Codex) get used ahead of metered API spend — API only when it's actually cheaper.</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nx-cost-card">
+                  <div class="nx-model-row">
+                    <span class="nx-model-label">Auto-selected model</span>
+                    <span class="nx-model-rotator" aria-hidden="true">
+                      <span class="nx-model-item active">Haiku</span>
+                      <span class="nx-model-item">Sonnet</span>
+                      <span class="nx-model-item">Opus</span>
+                    </span>
+                  </div>
+                  <div class="nx-meter">
+                    <div class="nx-meter-row"><span>API metered</span><span>Subscription leverage</span></div>
+                    <div class="nx-meter-track"><div class="nx-meter-fill" data-fill></div></div>
+                    <p class="nx-meter-cap">Spend shifted off metered API pricing as usage scales.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="nx-panel nx-partner">
+            <div class="wrap">
+              <p class="eyebrow">Design Partner Program</p>
+              <h2 class="nx-title">Nexus isn't shipped yet. Help us build it.</h2>
+              <p class="nx-lede">We're selecting a small number of teams to help shape Nexus before general release — early access, direct input on the roadmap, and embedded build support from Corvino Labs.</p>
+              <div class="cta-row">
+                <a class="btn" href="mailto:casey@corvinolabs.com?subject=Nexus%20Design%20Partner%20Application">Apply as a design partner</a>
+                <a class="btn btn-ghost" href="#top">Back to top</a>
+              </div>
+            </div>
+          </section>
+
         </div>
       </div>
     </section>
@@ -1857,6 +2138,121 @@
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () { update(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', update);
+})();
+
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia('(max-width: 720px)').matches;
+
+  var rotItems = Array.prototype.slice.call(document.querySelectorAll('.nx-model-item'));
+  if (!reduceMotion && rotItems.length > 1) {
+    var rotIdx = 0;
+    setInterval(function () {
+      rotItems[rotIdx].classList.remove('active');
+      rotIdx = (rotIdx + 1) % rotItems.length;
+      rotItems[rotIdx].classList.add('active');
+    }, 1900);
+  }
+
+  var kbBoard = document.getElementById('kb-board');
+  var kbHero = document.getElementById('kb-hero');
+  var kbCols = kbBoard ? Array.prototype.slice.call(kbBoard.querySelectorAll('.kb-col')) : [];
+
+  function positionKbHero(colIndex) {
+    if (!kbBoard || !kbHero || kbCols.length < 3) return;
+    var boardRect = kbBoard.getBoundingClientRect();
+    var colRect = kbCols[colIndex].getBoundingClientRect();
+    var titleRect = kbCols[0].querySelector('.kb-col-title').getBoundingClientRect();
+    kbHero.style.left = (colRect.left - boardRect.left) + 'px';
+    kbHero.style.width = colRect.width + 'px';
+    kbHero.style.top = (titleRect.bottom - boardRect.top) + 'px';
+  }
+
+  if (reduceMotion || isMobile) {
+    document.querySelectorAll('#nexus [data-reveal-at]').forEach(function (el) { el.classList.add('revealed'); });
+    var fill = document.querySelector('#nexus [data-fill]');
+    if (fill) fill.style.width = '78%';
+    positionKbHero(2);
+    if (kbHero) kbHero.classList.add('kb-done');
+    window.addEventListener('resize', function () { positionKbHero(2); });
+    return;
+  }
+
+  var stage = document.getElementById('nexus');
+  var track = document.getElementById('nx-track');
+  var panels = Array.prototype.slice.call(track.querySelectorAll('.nx-panel'));
+  if (!stage || !track || !panels.length) return;
+
+  var N = panels.length;
+  var HEIGHT_MULT = 2.5;
+  var HOLD_FRAC = 0.8;
+  var kbColIndex = 0;
+
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  function layout() {
+    stage.style.height = (N * HEIGHT_MULT * window.innerHeight) + 'px';
+    positionKbHero(kbColIndex);
+  }
+  layout();
+  window.addEventListener('resize', layout);
+
+  function update() {
+    var rect = stage.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var scrollable = stage.offsetHeight - vh;
+    var raw = clamp(-rect.top, 0, scrollable);
+    var progress = scrollable > 0 ? raw / scrollable : 0;
+    var floatIndex = progress * N;
+
+    var s = Math.min(N - 1, Math.floor(floatIndex));
+    var frac = clamp(floatIndex - s, 0, 1);
+    var isLast = s >= N - 1;
+
+    var trackPos;
+    if (isLast) {
+      trackPos = N - 1;
+    } else if (frac < HOLD_FRAC) {
+      trackPos = s;
+    } else {
+      trackPos = s + (frac - HOLD_FRAC) / (1 - HOLD_FRAC);
+    }
+    track.style.transform = 'translateX(-' + (trackPos * 100) + 'vw)';
+
+    panels.forEach(function (panel, i) {
+      var local;
+      if (i < s) local = 1;
+      else if (i > s) local = 0;
+      else local = clamp(frac / (isLast ? 1 : HOLD_FRAC), 0, 1);
+
+      var reveals = panel.querySelectorAll('[data-reveal-at]');
+      reveals.forEach(function (el) {
+        var at = parseFloat(el.getAttribute('data-reveal-at'));
+        el.classList.toggle('revealed', local >= at);
+      });
+
+      var fills = panel.querySelectorAll('[data-fill]');
+      fills.forEach(function (el) { el.style.width = (local * 78) + '%'; });
+
+      if (kbHero && panel.classList.contains('nx-work')) {
+        var targetCol = local >= 0.62 ? 2 : local >= 0.32 ? 1 : 0;
+        if (targetCol !== kbColIndex) {
+          kbColIndex = targetCol;
+          positionKbHero(kbColIndex);
+        }
+        kbHero.classList.toggle('kb-done', local >= 0.62);
+      }
+    });
+  }
+  update();
+
+  var nxTicking = false;
+  window.addEventListener('scroll', function () {
+    if (nxTicking) return;
+    nxTicking = true;
+    requestAnimationFrame(function () { update(); nxTicking = false; });
   }, { passive: true });
   window.addEventListener('resize', update);
 })();
