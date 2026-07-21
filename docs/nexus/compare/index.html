@@ -1,0 +1,302 @@
+<title>Harness vs. Nexus — Corvino Labs</title>
+<meta name="description" content="How a bare harness, a supercharged harness, and the Nexus Concept compare across employees, connections, rules, skills, and cost." />
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --bg-raised: #141414;
+    --bg-sunken: #000000;
+    --border: #333333;
+    --border-soft: #1E1E1E;
+    --text: #FFFFFF;
+    --text-dim: #B3B3B3;
+    --copper: #FFFFFF;
+    --copper-dim: #DEDEDE;
+    --glow-copper: color-mix(in srgb, var(--copper) 45%, transparent);
+
+    --font-mono: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-sans: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    --wrap: 1180px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #FFFFFF;
+      --bg-raised: #F7F7F7;
+      --bg-sunken: #F0F0F0;
+      --border: #DEDEDE;
+      --border-soft: #EDEDED;
+      --text: #121212;
+      --text-dim: #5C5C5C;
+      --copper: #121212;
+      --copper-dim: #333333;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0A0A0A; --bg-raised: #141414; --bg-sunken: #000000;
+    --border: #333333; --border-soft: #1E1E1E;
+    --text: #FFFFFF; --text-dim: #B3B3B3;
+    --copper: #FFFFFF; --copper-dim: #DEDEDE;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF; --bg-raised: #F7F7F7; --bg-sunken: #F0F0F0;
+    --border: #DEDEDE; --border-soft: #EDEDED;
+    --text: #121212; --text-dim: #5C5C5C;
+    --copper: #121212; --copper-dim: #333333;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2 { margin: 0; font-family: var(--font-sans); font-weight: 600; text-wrap: balance; }
+  p { margin: 0; }
+  ::selection { background: var(--copper); color: var(--bg-sunken); }
+  :focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+
+  .wordmark { font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 0.02em; text-decoration: none; display: flex; align-items: center; gap: 0.55rem; }
+  .wordmark .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--copper); box-shadow: 0 0 8px var(--copper); flex: none; }
+
+  header.top { border-bottom: 1px solid var(--border-soft); padding: 1.4rem 0; }
+  .top-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .back-link { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--text-dim); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color .2s ease, border-color .2s ease; }
+  .back-link:hover { color: var(--text); border-color: var(--text); }
+
+  .hero-block { padding: clamp(3rem, 7vw, 5rem) 0 clamp(2rem, 4vw, 3rem); }
+  h1.headline { font-size: clamp(1.9rem, 4.6vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 38rem; margin-top: 0.9rem; }
+  .lede { margin-top: 1.1rem; color: var(--text-dim); max-width: 38rem; line-height: 1.65; font-size: 1.05rem; }
+
+  .tier-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; max-width: 40rem; }
+  .tier-list li { padding-left: 1.1rem; border-left: 2px solid var(--border); }
+  .tier-list b { font-size: 1rem; }
+  .tier-list p { margin-top: 0.25rem; color: var(--text-dim); font-size: 0.95rem; line-height: 1.55; }
+  .tier-tag { margin-left: 0.5rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 999px; padding: 0.18rem 0.5rem; white-space: nowrap; }
+  .tier-list li.is-default { border-left-color: var(--copper); }
+  .tier-list li.is-default .tier-tag { color: var(--copper); }
+  .tier-list li.is-future .tier-tag { color: var(--text-dim); }
+
+  /* ---------- comparison table ---------- */
+  .cmp-wrap { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+  .cmp-scroll { overflow-x: auto; border: 1px solid var(--border-soft); border-radius: 12px; }
+  table.cmp { width: 100%; border-collapse: collapse; min-width: 780px; }
+  table.cmp th, table.cmp td { padding: 1.1rem 1.25rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border-soft); }
+  table.cmp tr:last-child td { border-bottom: none; }
+
+  table.cmp thead th { background: var(--bg-raised); position: sticky; top: 0; z-index: 2; }
+  th.cmp-row-head-cell { width: 11rem; }
+  td.cmp-row-head {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim);
+    background: var(--bg-raised); position: sticky; left: 0; z-index: 1; width: 11rem;
+  }
+  th.cmp-row-head-cell { position: sticky; left: 0; z-index: 3; }
+
+  .cmp-tier-name { font-size: 1rem; font-weight: 600; }
+  .cmp-tier-sub { margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+  .cmp-tag {
+    display: inline-block; margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid currentColor; border-radius: 999px; padding: 0.22rem 0.55rem; opacity: 0.75;
+  }
+
+  th.cmp-tier-default, td.cmp-cell-default {
+    background: color-mix(in srgb, var(--copper) 6%, var(--bg));
+    box-shadow: inset 1px 0 0 var(--border), inset -1px 0 0 var(--border);
+  }
+  th.cmp-tier-default { box-shadow: inset 1px 0 0 var(--border), inset -1px 0 0 var(--border), inset 0 -2px 0 var(--copper); }
+
+  .cmp-tag-default { border-color: var(--copper); color: var(--copper); opacity: 1; }
+  .cmp-tag-future { color: var(--text-dim); }
+
+  td.cmp-cell { color: var(--text-dim); font-size: 0.92rem; line-height: 1.55; }
+  td.cmp-cell-default { color: var(--text); }
+  td.cmp-cell-future { color: var(--text-dim); font-style: italic; }
+  td.cmp-cell sup { font-size: 0.7em; margin-left: 0.1em; }
+  .cmp-cell a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--border); transition: text-decoration-color .2s ease; }
+  .cmp-cell a:hover { text-decoration-color: currentColor; }
+
+  .cmp-foot { margin-top: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  .cmp-foot p { font-family: var(--font-mono); font-size: 0.88rem; color: var(--text-dim); line-height: 1.55; }
+  .cmp-foot sup { margin-right: 0.2em; }
+
+  /* cta */
+  .btn {
+    font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; padding: 0.85rem 1.3rem; border-radius: 6px; border: 1px solid var(--copper);
+    color: var(--bg-sunken); background: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px -8px var(--glow-copper); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--copper); box-shadow: 0 8px 22px -10px var(--glow-copper); }
+  .cta-row { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+
+  footer { border-top: 1px solid var(--border-soft); padding: 2.4rem 0; }
+  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+  .foot-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 1.4rem; flex-wrap: wrap; }
+  .foot-meta a { text-decoration: none; }
+  .foot-meta a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    table.cmp th, table.cmp td { padding: 0.9rem 1rem; }
+  }
+</style>
+
+<div class="page">
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="wordmark" href="/"><span class="dot"></span>CORVINO LABS</a>
+      <a class="back-link" href="/#nexus">&larr; Back to Nexus</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-block">
+      <div class="wrap">
+        <p class="eyebrow">Nexus Concept &middot; Comparison</p>
+        <h1 class="headline">Most teams should start with Supercharged MCP.</h1>
+        <ul class="tier-list">
+          <li>
+            <b>Harness</b>
+            <p>One person, one assistant.</p>
+          </li>
+          <li class="is-default">
+            <b>Harness + Supercharged MCP</b>
+            <p>A super assistant for the whole team &mdash; fully wired and ready to deploy today.<span class="tier-tag">Start here</span></p>
+          </li>
+          <li class="is-future">
+            <b>Nexus Concept</b>
+            <p>A fleet of AI employees, built for scale.<span class="tier-tag">Tomorrow's problem</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cmp-wrap">
+      <div class="wrap">
+        <div class="cmp-scroll">
+          <table class="cmp">
+            <thead>
+              <tr>
+                <th class="cmp-row-head-cell"></th>
+                <th>
+                  <p class="cmp-tier-name">Harness</p>
+                  <p class="cmp-tier-sub">Claude Code, Codex, &hellip;</p>
+                </th>
+                <th class="cmp-tier-default">
+                  <p class="cmp-tier-name">Harness + Supercharged MCP</p>
+                  <p class="cmp-tier-sub">Off-the-shelf harness, fully wired</p>
+                  <span class="cmp-tag cmp-tag-default">Default today</span>
+                </th>
+                <th>
+                  <p class="cmp-tier-name">Nexus Concept</p>
+                  <p class="cmp-tier-sub">AI-employee harness</p>
+                  <span class="cmp-tag cmp-tag-future">Future &middot; for scale</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cmp-row-head">Employee</td>
+                <td class="cmp-cell">Assistant</td>
+                <td class="cmp-cell cmp-cell-default">Super assistant</td>
+                <td class="cmp-cell cmp-cell-future">Fleet of AI employees</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Connections</td>
+                <td class="cmp-cell">Off the shelf</td>
+                <td class="cmp-cell cmp-cell-default">Off the shelf + <a href="/#conn-custom">custom</a> + team shared</td>
+                <td class="cmp-cell cmp-cell-future">Off the shelf + pre-auth&rsquo;d, grouped by AI employee &mdash; specialized, better context, focused, easier to share a collection, pre-installed &amp; configured</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Rules</td>
+                <td class="cmp-cell">Individual builds their own</td>
+                <td class="cmp-cell cmp-cell-default">Team shared &mdash; manager decides restrictions and best practices</td>
+                <td class="cmp-cell cmp-cell-future">Team shared + grouped by AI employee &mdash; specialized, better context, focused, easier to share a collection</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Skills</td>
+                <td class="cmp-cell">Individual builds their own</td>
+                <td class="cmp-cell cmp-cell-default">Team shared &mdash; manager decides restrictions and best practices</td>
+                <td class="cmp-cell cmp-cell-future">Team shared + grouped by AI employee &mdash; specialized, better context, focused, easier to share a collection</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Chat UI</td>
+                <td class="cmp-cell">Harness default UI or CLI<sup>1</sup></td>
+                <td class="cmp-cell cmp-cell-default">Harness default UI or CLI</td>
+                <td class="cmp-cell cmp-cell-future">Custom UI &mdash; web/mobile app, Slack, Asana, email, &hellip;</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Managing work</td>
+                <td class="cmp-cell">Recent chats/folders</td>
+                <td class="cmp-cell cmp-cell-default">Recent chats/folders</td>
+                <td class="cmp-cell cmp-cell-future">Recent chats/folders + Kanban for organized work</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Scheduling tasks</td>
+                <td class="cmp-cell">Cloud scheduler<sup>2</sup></td>
+                <td class="cmp-cell cmp-cell-default">Cloud scheduler<sup>2</sup></td>
+                <td class="cmp-cell cmp-cell-future">Kanban recurring tasks, webhooks, centralized scheduler</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Model</td>
+                <td class="cmp-cell">One model, one harness</td>
+                <td class="cmp-cell cmp-cell-default">One model, one harness</td>
+                <td class="cmp-cell cmp-cell-future">Model- and harness-agnostic, including self-hosted</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Cost</td>
+                <td class="cmp-cell">Max sub + overages + additional cloud costs</td>
+                <td class="cmp-cell cmp-cell-default">Max sub + overages + additional cloud costs</td>
+                <td class="cmp-cell cmp-cell-future">Auto model routing, smarter context, no separate cloud hosting &mdash; uses existing subscriptions</td>
+              </tr>
+              <tr>
+                <td class="cmp-row-head">Apps</td>
+                <td class="cmp-cell">Vibe-code localhost apps</td>
+                <td class="cmp-cell cmp-cell-default">Vibe-code localhost apps</td>
+                <td class="cmp-cell cmp-cell-future">Vibe-code and host apps, with permissions, on the same platform</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cmp-foot">
+          <p><sup>1</sup> Off-the-shelf integrations have limitations &mdash; not the same as running locally.</p>
+          <p><sup>2</sup> Cloud schedulers have limitations &mdash; not the same as running locally.</p>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="mailto:casey@corvinolabs.com?subject=Supercharged%20MCP">Get supercharged</a>
+          <a class="btn btn-ghost" href="mailto:casey@corvinolabs.com?subject=Nexus%20Design%20Partner%20Application">Apply as a Nexus design partner</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-row">
+      <a class="wordmark" href="/"><span class="dot"></span>CORVINO LABS</a>
+      <div class="foot-meta">
+        <span>Corvino Labs, LLC</span>
+        <span>San Juan, PR</span>
+        <a href="mailto:casey@corvinolabs.com">casey@corvinolabs.com</a>
+      </div>
+    </div>
+  </footer>
+</div>
