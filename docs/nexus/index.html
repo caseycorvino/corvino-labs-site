@@ -106,6 +106,19 @@
       </div>
     </div>
 
+    <div class="figure" style="margin-top:2.5rem">
+      <div class="trail">
+        <div class="ev"><div class="w">Schedule</div><div class="d">Monthly revenue-impact report created &mdash; recurring task</div></div>
+        <div class="ev"><div class="w">Schedule</div><div class="d">Assigned to Ridge, data &amp; reporting</div></div>
+        <div class="ev"><div class="w">Ridge</div><div class="d">Not started &rarr; In progress</div></div>
+        <div class="ev"><div class="w">Ridge</div><div class="d">In progress &rarr; AI review</div></div>
+        <div class="ev"><div class="w">Ellery</div><div class="d">Data validated against source audit logs. Forwarding.</div></div>
+        <div class="ev"><div class="w">Ridge</div><div class="d">AI review &rarr; Human review</div></div>
+        <div class="ev"><div class="w">You</div><div class="d">Reviewing</div></div>
+      </div>
+      <p class="figure-cap">Every state change stamped with the employee that made it. Not "the AI did something" &mdash; a name, an action, and a time.</p>
+    </div>
+
     <p class="note">Because every action runs under its own identity, your existing audit logs, access reviews, and offboarding process already work. Turning an AI employee off is the same as turning any employee off.</p>
   </div>
 </section>
@@ -113,30 +126,119 @@
 <!-- ===== WHERE THEY WORK ===== -->
 <section>
   <div class="wrap">
+    <p class="eyebrow">Where they work</p>
+    <h2 class="prose">No new inbox to check.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">Nexus employees work inside the tools your team is already in &mdash; Slack, Asana, email, and an app of your own. Nobody has to remember to go visit a chatbot.</p>
+
+    <div class="figure" style="margin-top:2.5rem">
+      <div class="board">
+        <div class="col">
+          <div class="col-t">Draft &middot; 3</div>
+          <div class="card">Scope integration pilot for a new partner</div>
+          <div class="card">Evaluate replacement for the data cleanup tool</div>
+        </div>
+        <div class="col">
+          <div class="col-t">Not started &middot; 5</div>
+          <div class="card">Re-run validation on 40 archived records <em>&mdash; weekly</em></div>
+          <div class="card">Compile the cross-partner newsletter</div>
+        </div>
+        <div class="col">
+          <div class="col-t">In progress &middot; 8</div>
+          <div class="card on">Reprocess 200 flagged records</div>
+          <div class="card">Rewrite plain-language summaries for the top 10</div>
+        </div>
+        <div class="col">
+          <div class="col-t">AI review &middot; 4</div>
+          <div class="card">Quarterly performance report</div>
+          <div class="card">Update processing thresholds</div>
+        </div>
+        <div class="col">
+          <div class="col-t">Human review &middot; 2</div>
+          <div class="card">Monthly revenue-impact report</div>
+        </div>
+      </div>
+      <p class="figure-cap">Every task has a state, an assigned employee, and a reviewer. Recurring work re-creates itself on a schedule.</p>
+    </div>
+
+    <h3 style="margin-top:3rem;font-size:1.15rem">And they show up wherever the conversation is happening.</h3>
+    <p style="color:var(--text-mid);margin-top:0.5rem;max-width:52ch">Assign work in Asana, ask a question in Slack, forward an email &mdash; it's the same employee, with the same memory of what it's working on.</p>
+
+    <div class="surfaces">
+      <div class="surface">
+        <div class="sh">Slack</div>
+        <div class="from">Ellery <em>#marketing</em></div>
+        <div class="line">Q3 brief is ready for review &mdash; Ridge validated the numbers, one recommendation changed.</div>
+      </div>
+      <div class="surface">
+        <div class="sh">Asana</div>
+        <div class="from">Reprocess 200 flagged records <em>assigned</em></div>
+        <div class="line">Sable moved it to In progress and commented with a time estimate.</div>
+      </div>
+      <div class="surface">
+        <div class="sh">Email</div>
+        <div class="from">Ridge <em>ridge@yourcompany.com</em></div>
+        <div class="line">Replying on the forwarded partner thread, with the three action items pulled out.</div>
+      </div>
+      <div class="surface">
+        <div class="sh">Web &amp; mobile</div>
+        <div class="from">Nexus <em>your own app</em></div>
+        <div class="line">Every task, employee, and audit trail &mdash; on a laptop or a phone.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TWO REVIEW GATES ===== -->
+<section class="tint">
+  <div class="wrap">
+    <p class="eyebrow">Two review gates</p>
+    <h2 class="prose">Nothing reaches you until another employee has checked it.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">The stage most AI tools are missing sits between "done" and "your problem." Work goes to a second AI employee for review first, and only reaches a person once it has survived that.</p>
+
+    <div class="figure" style="margin-top:2.5rem">
+      <div class="pipe">
+        <div class="stage"><div class="st-t">Draft</div><div class="st-w">Scoped by a human</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage"><div class="st-t">Not started</div><div class="st-w">Queued &amp; assigned</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage"><div class="st-t">In progress</div><div class="st-w">AI employee working</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage key"><div class="st-t">AI review</div><div class="st-w">A second AI employee</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage human"><div class="st-t">Human review</div><div class="st-w">You, last</div></div>
+      </div>
+      <p class="figure-cap">Your attention is the scarcest thing in the system, so it's spent last &mdash; on work that has already been checked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THEY CHECK EACH OTHER ===== -->
+<section>
+  <div class="wrap">
     <div class="two-col">
       <div>
-        <p class="eyebrow">Where they work</p>
-        <h2>No new inbox to check.</h2>
-        <p style="color:var(--text-mid);margin-top:1rem">Nexus employees pick up work from your project board, answer in your Slack channels, and handle email threads. Nobody has to remember to go visit a chatbot.</p>
+        <p class="eyebrow">AI review</p>
+        <h2>They check each other's work.</h2>
+        <p style="color:var(--text-mid);margin-top:1rem">A reviewing employee doesn't just re-read the draft. It goes back to the source data, runs the numbers itself, and disagrees when the numbers say something different.</p>
+        <p style="color:var(--text-mid)">This is the practical argument for a fleet instead of one assistant: a second employee with its own tools and its own context catches things the first one was never going to catch about itself.</p>
       </div>
       <div class="figure">
-        <div class="board">
-          <div class="col">
-            <div class="col-t">To do</div>
-            <div class="card">Ad copy variants</div>
-            <div class="card">Competitor scan</div>
+        <div class="thread">
+          <div class="msg">
+            <div class="who">Ellery <span>Reporting &middot; AI employee</span></div>
+            <div class="body">Quarterly performance report drafted. Three findings, three recommendations. Sending to Ridge for data validation.</div>
           </div>
-          <div class="col">
-            <div class="col-t">In progress</div>
-            <div class="card on">Q3 campaign brief</div>
+          <div class="msg">
+            <div class="who">Ridge <span>Data &middot; AI employee</span></div>
+            <div class="cmd">$ python3 scripts/validate_report_data.py --q3</div>
+            <div class="body">Numbers match the source audit logs within 0.4% &mdash; good to go. One correction: the dip Ellery flagged as a quality regression lines up with a mid-quarter config rollout, and it's concentrated in the two weeks right after. That's a deployment issue, not a regression. Someone should check the rollout sequencing before we call it the former.</div>
           </div>
-          <div class="col">
-            <div class="col-t">Done</div>
-            <div class="card">Newsletter send</div>
-            <div class="card">Landing page QA</div>
+          <div class="msg">
+            <div class="who">Ellery <span>Reporting &middot; AI employee</span></div>
+            <div class="body">Good catch. Adding it as recommendation #4 and flagging the compliance team, since it changes the change-control record. Moving to human review.</div>
           </div>
         </div>
-        <p class="figure-cap">Work assigned on the board, done by an AI employee, back for review — same as any teammate.</p>
+        <p class="figure-cap">An AI review that changed the conclusion &mdash; before a person spent a minute on it.</p>
       </div>
     </div>
   </div>
@@ -229,9 +331,14 @@
                         <td class="us">Shared library, grouped by role — managers set what each one can and can't do</td>
           </tr>
           <tr>
+            <th>Quality control</th>
+            <td>Runs until it needs your sign-off</td>
+            <td class="us">A second AI employee reviews the work against source data before a human ever sees it</td>
+          </tr>
+          <tr>
             <th>Where the work lands</th>
             <td>Its own chat surface, with sign-off prompts</td>
-                        <td class="us">Your kanban board, Slack, and email — plus a custom UI where it helps</td>
+                        <td class="us">Your project management tool, Slack, and email — plus an app of your own where it helps</td>
           </tr>
           <tr>
             <th>Building internal tools</th>
