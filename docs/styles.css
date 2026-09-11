@@ -291,3 +291,16 @@ td.us { color: var(--text); font-weight: 500; background: var(--bg-alt); }
 .surface .from { font-size: 0.82rem; font-weight: 600; }
 .surface .from em { font-style: normal; font-weight: 400; color: var(--text-dim); font-size: 0.72rem; margin-left: 0.35rem; }
 .surface .line { font-size: 0.85rem; color: var(--text-mid); margin-top: 0.3rem; }
+
+/* ---------- skip link (keyboard a11y) ---------- */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--bg-ink); color: #fff; text-decoration: none;
+  padding: 0.7rem 1.1rem; border-radius: 0 0 var(--radius) 0;
+  font-size: 0.85rem; font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- pill used as a link ---------- */
+a.pill { text-decoration: none; transition: border-color 0.15s ease, color 0.15s ease; }
+a.pill:hover { border-color: var(--line-ink); color: var(--text); }
