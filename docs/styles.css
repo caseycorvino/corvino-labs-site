@@ -96,6 +96,27 @@ section.tint { background: var(--bg-alt); }
   /* the current page always survives a collapse — it is the only wayfinding on a phone */
   .nav-links a[aria-current="page"] { display: inline !important; }
 }
+/* a seventh link first fits at 906px, measured exactly the way the sixth was (see below):
+   /why-ai-projects-fail/ is the worst case again (its own label is the longest and bold)
+   and fits at viewport 891, overflowing at 890; /how-we-work/ fits at 890, the rest at
+   888-889. Plus the 15px classic scrollbar the media query counts and clientWidth does
+   not: 891 + 15 = 906.
+   "Connections" is the newest link and the first to go, so the whole measured
+   ladder underneath it is untouched. */
+@media (max-width: 905px) {
+  .nav-links .nav-hide-lg { display: none; }
+  /* on its own page it survives the collapse. "Connections" is both longer than "About"
+     and bold when current, so About steps down with it and the row stays at six. */
+  .nav-links .nav-hide-lg[aria-current="page"] { display: inline; }
+  .nav-links:has(.nav-hide-lg[aria-current="page"]) .nav-hide-md:not([aria-current="page"]) { display: none; }
+}
+/* the swap above isn't free: "Connections" bold is 24px wider than "About" regular, so
+   that six-link row needs 843px rather than 804 (measured on /connections/: viewport 828
+   -> 0 overflow, 827 -> 1px, + the 15px scrollbar). Below it "Why AI fails" steps down
+   and the row is five, which is what the band under this one would have given anyway. */
+@media (max-width: 842px) {
+  .nav-links:has(.nav-hide-lg[aria-current="page"]) .nav-hide-sm:not([aria-current="page"]) { display: none; }
+}
 /* a sixth link first fits at 804px. Measured on /why-ai-projects-fail/ and
    /how-we-work/ — the worst case, because the current page's label is bold and those
    two are the longest: 799 -> 5px of document overflow, 801 -> 3px, 803 -> 1px,
@@ -123,6 +144,8 @@ section.tint { background: var(--bg-alt); }
   .nav-links:has(.nav-hide-sm[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
   /* same compensation when About is the surviving current page */
   .nav-links:has(.nav-hide-md[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
+  /* and when Connections is */
+  .nav-links:has(.nav-hide-lg[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
 }
 @media (max-width: 620px) {
   .nav-links .nav-hide-xs { display: none; }
@@ -478,3 +501,8 @@ a.pill:hover { border-color: var(--line-ink); color: var(--text); }
   border-radius: 4px; padding: 0.5rem 0.65rem; margin-top: 1rem;
   overflow-x: auto; white-space: nowrap;
 }
+
+/* ---------- catalog groups (connections) ---------- */
+.cat { margin-top: 2.5rem; }
+.cat h3 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+.tiles.compact { margin-top: 0.8rem; }
