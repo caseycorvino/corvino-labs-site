@@ -187,13 +187,16 @@ section.tint { background: var(--bg-alt); }
 .grid > .cell p { color: var(--text-mid); font-size: 0.96rem; }
 @media (max-width: 800px) { .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; } }
 
-/* A .pairs grid holds {problem} + {how we do it differently} in one cell. The cell is a
-   flex column and the answer takes margin-top:auto, so within a row every divider lands on
-   the same line however unevenly the problem copy wraps. The problem <p> above it is not
-   :last-child, so it keeps its 1.1em bottom margin and the divider can never sit flush
-   against the text when a cell happens to be the tallest in its row. */
-.grid.pairs > .cell { display: flex; flex-direction: column; }
-.grid.pairs > .cell .answer { margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--line-mid); }
+/* A .pairs grid holds {problem} + {how we do it differently} in one cell. Each cell spans
+   two rows of the parent and subgrids them, so the problem row is sized by the longest
+   problem in that row and every divider lands on the same line however unevenly the copy
+   wraps. Bottom-pinning the answer with margin-top:auto does NOT do this — it makes the
+   divider track answer length instead, which staggered them by up to 49px. The 1px row gap
+   the subgrid inherits falls inside the cell, where the cell's own background paints over
+   it, so no line is drawn there. The problem <p> is not :last-child, so it keeps its 1.1em
+   bottom margin and the divider never sits flush against the text. */
+.grid.pairs > .cell { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
+.grid.pairs > .cell .answer { padding-top: 0.9rem; border-top: 1px solid var(--line-mid); }
 .grid.pairs > .cell .answer .lbl {
   display: block; margin-bottom: 0.4rem;
   font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
