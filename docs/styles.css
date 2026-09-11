@@ -96,10 +96,17 @@ section.tint { background: var(--bg-alt); }
   /* the current page always survives a collapse — it is the only wayfinding on a phone */
   .nav-links a[aria-current="page"] { display: inline !important; }
 }
-/* a sixth link first fits at 788px (measured on /about/: 780 -> 7px of document
-   overflow, 786 -> 1px, 788 -> 0 with 24px CTA clearance), so "About" is the first
-   to go below it and the five-link ladder underneath stays exactly as measured. */
-@media (max-width: 787px) {
+/* a sixth link first fits at 804px. Measured on /why-ai-projects-fail/ and
+   /how-we-work/ — the worst case, because the current page's label is bold and those
+   two are the longest: 799 -> 5px of document overflow, 801 -> 3px, 803 -> 1px,
+   804 -> 0 with 24px CTA clearance. Above 760px .nav-links has no overflow-x, so an
+   overflowing row widens the document instead of scrolling inside itself; compare
+   documentElement.scrollWidth against documentElement.clientWidth, NOT innerWidth —
+   innerWidth includes the 15px classic scrollbar and hides ~15px of real overflow,
+   which is how an earlier pass landed on 788. Media queries do match innerWidth, so
+   this number is 15 higher than the 789px the row actually occupies. "About" is the
+   first to go below it and the five-link ladder underneath stays as measured. */
+@media (max-width: 803px) {
   .nav-links .nav-hide-md { display: none; }
   /* on its own page it survives the collapse, so "Why AI fails" steps down with it
      and the row stays at five — six links overflow this whole band. */
