@@ -506,3 +506,16 @@ a.pill:hover { border-color: var(--line-ink); color: var(--text); }
 .cat { margin-top: 2.5rem; }
 .cat h3 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
 .tiles.compact { margin-top: 0.8rem; }
+/* The catalog groups hold 3-6 tiles against an auto-fit track count that swings from
+   6 columns down to 2, so a group almost always leaves empty cells on its last row.
+   The plain .tiles separator trick is a 1px gap over a --line container, which paints
+   those empty cells as solid grey blocks that read as missing tiles (worst at mobile,
+   where 5 items over 2 columns leaves one). So .tiles.compact makes the container
+   transparent and outlines each tile instead. Adjacent tiles' outlines both land in the
+   1px gap and coincide into a single line, and at the perimeter they coincide with the
+   container border, so nothing doubles. An empty cell has no tile, so it has no outline
+   and simply shows the section background. Plain .tiles (/foundation/) is left alone.
+   Borders + negative margins do NOT work here: the negative margin widens each tile over
+   its neighbour, whose opaque background then paints over the border. */
+.tiles.compact { background: transparent; }
+.tiles.compact .tile { outline: 1px solid var(--line); }
