@@ -96,6 +96,16 @@ section.tint { background: var(--bg-alt); }
   /* the current page always survives a collapse — it is the only wayfinding on a phone */
   .nav-links a[aria-current="page"] { display: inline !important; }
 }
+/* a sixth link first fits at 788px (measured on /about/: 780 -> 7px of document
+   overflow, 786 -> 1px, 788 -> 0 with 24px CTA clearance), so "About" is the first
+   to go below it and the five-link ladder underneath stays exactly as measured. */
+@media (max-width: 787px) {
+  .nav-links .nav-hide-md { display: none; }
+  /* on its own page it survives the collapse, so "Why AI fails" steps down with it
+     and the row stays at five — six links overflow this whole band. */
+  .nav-links .nav-hide-md[aria-current="page"] { display: inline; }
+  .nav-links:has(.nav-hide-md[aria-current="page"]) .nav-hide-sm:not([aria-current="page"]) { display: none; }
+}
 /* a fifth link first fits at 720px (measured on /how-we-work/, the longest label:
    701 -> 17px over, 715 -> 4px over, 720 -> 0 with 14px CTA clearance), so
    "Why AI fails" is the first to go below it. */
@@ -104,6 +114,8 @@ section.tint { background: var(--bg-alt); }
   /* on its own page it survives the collapse, so the two xs links step down with it
      and the row stays at three — five links overflow this whole band. */
   .nav-links:has(.nav-hide-sm[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
+  /* same compensation when About is the surviving current page */
+  .nav-links:has(.nav-hide-md[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
 }
 @media (max-width: 620px) {
   .nav-links .nav-hide-xs { display: none; }
