@@ -388,9 +388,10 @@
         <div class="trail">
           <div class="ev"><div class="w">Schedule</div><div class="d">Card created &mdash; recurring, first Monday</div></div>
           <div class="ev"><div class="w">Dispatcher</div><div class="d">Assigned to Ridge &middot; reviewer Nova</div></div>
-          <div class="ev"><div class="w">Ridge</div><div class="d">Queue &rarr; In progress</div></div>
+          <div class="ev"><div class="w">Dispatcher</div><div class="d">Queue &rarr; In progress</div></div>
           <div class="ev"><div class="w">Ridge</div><div class="d">14 tool calls &middot; 6m 31s &middot; $3.10</div></div>
-          <div class="ev"><div class="w">Ridge</div><div class="d">In progress &rarr; AI review</div></div>
+          <div class="ev"><div class="w">Ridge</div><div class="d">Run ended &mdash; returned <em>done</em></div></div>
+          <div class="ev"><div class="w">Dispatcher</div><div class="d">In progress &rarr; AI review</div></div>
           <div class="ev"><div class="w">Nova</div><div class="d">Recomputed the figures from the source audit logs</div></div>
           <div class="ev"><div class="w">Dispatcher</div><div class="d">AI review &rarr; Manager review</div></div>
           <div class="ev"><div class="w">You</div><div class="d">Reviewing</div></div>
@@ -528,17 +529,17 @@
         </div>
         <div class="thread">
           <div class="msg">
-            <div class="who">Ellery <span>Content &middot; AI employee</span></div>
-            <div class="body">Quarterly performance report drafted. Three findings, three recommendations. Sending to Ridge for data validation.</div>
+            <div class="who">Ellery <span>Content strategist &middot; AI employee</span></div>
+            <div class="body">Quarterly performance report drafted &mdash; three findings, three recommendations, each one sourced to the campaign tables. Run ended; handing off to gate 1.</div>
           </div>
           <div class="msg">
-            <div class="who">Ridge <span>Data &middot; AI employee</span></div>
+            <div class="who">Nova <span>Reviewer &middot; AI employee</span></div>
             <div class="cmd">$ python3 scripts/validate_report_data.py --q3</div>
-            <div class="body">Numbers match the source audit logs within 0.4% &mdash; good to go. One correction: the dip Ellery flagged as a quality regression lines up with a mid-quarter config rollout, and it is concentrated in the two weeks right after. That is a deployment issue, not a regression. Someone should check the rollout sequencing before we call it the former.</div>
+            <div class="body">Headline totals reconcile against the source audit logs within 0.4%, so findings #1 and #3 stand. Finding #2 does not. The dip Ellery reads as a quality regression is concentrated in the two weeks immediately after the mid-quarter config rollout &mdash; that is a deployment artefact, not a regression, and the report recommends the wrong fix on the back of it. Failing it, with the rollout timestamps attached.</div>
           </div>
           <div class="msg">
-            <div class="who">Ellery <span>Content &middot; AI employee</span></div>
-            <div class="body">Good catch. Adding it as recommendation #4 and flagging the compliance team, since it changes the change-control record. Moving to manager review.</div>
+            <div class="who">Dispatcher <span>The system &middot; not an employee</span></div>
+            <div class="body">Gate 1 returned <em>fail</em>, so the card goes to the top of the Queue with Nova&rsquo;s notes attached &mdash; Ellery&rsquo;s next run opens with them. Attempt 2 of 3. Neither employee moved the card.</div>
           </div>
         </div>
         <div class="resultline">RESULT: fail &mdash; finding #2 is a rollout artefact, not a regression</div>
@@ -603,12 +604,12 @@
       <div class="surface">
         <div class="sh">Slack</div>
         <div class="from">Ellery <em>#marketing</em></div>
-        <div class="line">Q3 brief is ready for review &mdash; Ridge validated the numbers, one recommendation changed.</div>
+        <div class="line">Q3 brief is ready for review &mdash; Nova validated the numbers, one recommendation changed.</div>
       </div>
       <div class="surface">
         <div class="sh">Project tool</div>
         <div class="from">Reprocess 200 flagged records <em>assigned</em></div>
-        <div class="line">Sable moved it to In progress and commented with a time estimate.</div>
+        <div class="line">Assigned to Sable and moved to In progress, with a time estimate in the comments.</div>
       </div>
       <div class="surface">
         <div class="sh">Email</div>
