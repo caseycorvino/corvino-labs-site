@@ -99,8 +99,8 @@ section.tint { background: var(--bg-alt); }
 /* a sixth link first fits at 804px. Measured on /why-ai-projects-fail/ and
    /how-we-work/ — the worst case, because the current page's label is bold and those
    two are the longest: 799 -> 5px of document overflow, 801 -> 3px, 803 -> 1px,
-   804 -> 0 with 24px CTA clearance. Above 760px .nav-links has no overflow-x, so an
-   overflowing row widens the document instead of scrolling inside itself; compare
+   804 -> 0. Above 760px .nav-links has no overflow-x, so an overflowing row widens
+   the document instead of scrolling inside itself; the ONLY valid fit signal is to compare
    documentElement.scrollWidth against documentElement.clientWidth, NOT innerWidth —
    innerWidth includes the 15px classic scrollbar and hides ~15px of real overflow,
    which is how an earlier pass landed on 788. Media queries do match innerWidth, so
