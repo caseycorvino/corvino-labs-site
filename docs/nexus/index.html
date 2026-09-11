@@ -32,8 +32,13 @@
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow">Offering 2 &middot; Advanced build</p>
-    <h1>Nexus — AI Employees</h1>
-    <p class="lede">Not one assistant everybody shares. A team of AI employees with actual roles, sitting in your org chart, doing the work where the work already happens &mdash; and checking each other before anything reaches you.</p>
+    <h1>Unburden your team</h1>
+    <p class="lede">AI Employees work on top of your foundations layer. We call this the Nexus.</p>
+    <div class="etym">
+      <p><b>Nexus</b> <i>noun</i> <span>&ldquo;nek-s&#601;s&rdquo;</span></p>
+      <p>a connected group</p>
+    </div>
+    <p class="lede">Nexus is where we bring together your employees and the power of AI to enable new, profitable scale.</p>
     <div class="btn-row">
       <a class="btn" href="https://calendly.com/casey-corvinolabs/30min" target="_blank" rel="noopener">Talk to us about Nexus</a>
       <a class="btn ghost" href="#fit">Is my team ready?</a>
@@ -57,13 +62,13 @@
   <div class="wrap">
     <div class="two-col">
       <div>
-        <p class="eyebrow">Why it exists</p>
-        <h2 id="why-h">A shared assistant stops scaling once your team gets good.</h2>
+        <p class="eyebrow">When is it time to hire an AI employee?</p>
+        <h2 id="why-h">Outgrowing foundations.</h2>
       </div>
       <div>
         <p>Teams that are early with AI should not start here. But once your whole team has AI wired into everything and is genuinely using it, the next limit shows up fast: one generic assistant holding everyone's context, everyone's tools, and everyone's rules at the same time is worse at every individual job than a focused one would be.</p>
         <p>Nexus splits it up the way a company does. Each AI employee has a role, and only the skills, connections, memory, and rules that role needs. Better focus, cheaper to run, and far easier for a manager to reason about.</p>
-        <p>Everything below is the actual specification &mdash; how an employee is defined, where it runs, how work moves, and what stops it. No screenshots of a roadmap.</p>
+        <p>Everything below is the actual specification: how an employee is defined, where it runs, how work moves, and what stops it.</p>
       </div>
     </div>
   </div>
@@ -372,7 +377,7 @@
         </div>
       </div>
     </div>
-    <p class="figure-cap">Representative UI. Every card carries its employee, its reviewer, the cost so far, the attempt count, and whether it is waiting on a person. Recurring work re-creates itself on a schedule; a webhook or an inbound email can file a card too.</p>
+    <p class="figure-cap">Representative UI. Every card carries its employee, its reviewer, the cost so far, the attempt count, and whether it is waiting on a person. Recurring work re-creates itself on a schedule.</p>
 
     <h3 style="margin-top:3rem">Opening a card</h3>
     <p style="color:var(--text-mid);margin-top:0.5rem;max-width:56ch">A task is not a black box that returns a result. It is a thread: every state change, every tool call, every dollar, and the one line the employee signs off with.</p>
@@ -400,7 +405,7 @@
       <div>
         <h3>The hand-off is one line, on purpose</h3>
         <p style="color:var(--text-mid);margin-top:0.7rem">An employee ends a run by stating a verdict in a fixed form: <strong>done</strong>, or <strong>blocked</strong> with the question. A reviewer states <strong>pass</strong>, <strong>fail</strong> with what is wrong, or <strong>blocked</strong>.</p>
-        <p style="color:var(--text-mid)">That line is the whole contract, and the employee never moves its own card &mdash; the dispatcher reads the verdict and moves it. An agent that can promote its own work does not have a review gate, it has a polite suggestion of one.</p>
+        <p style="color:var(--text-mid)">That line is the whole contract. The employee never moves its own card; the dispatcher reads the verdict and moves it. An agent that can promote its own work has a polite suggestion of a review gate.</p>
         <ul class="checks">
           <li><strong>No verdict is not a pass.</strong> A review that ends without one costs an attempt and the card stays where it is</li>
           <li><strong>Blocked means stopped.</strong> The run ends, the lock releases, and the question goes to the manager &mdash; it does not guess to keep the lane moving</li>
@@ -462,7 +467,7 @@
         </tbody>
       </table>
     </div>
-    <p class="note">One run per employee at a time, and reviews are dispatched before new work. A person dragging a card somewhere the rules do not allow gets normalized into the nearest legal state rather than rejected &mdash; a board should behave like a board, not like a form with a validation error.</p>
+    <p class="note">One run per employee at a time, and reviews are dispatched before new work. Drag a card somewhere the rules do not allow and it normalizes into the nearest legal state. A board should behave like a board.</p>
   </div>
 </section>
 
@@ -512,8 +517,8 @@
       <div>
         <p class="eyebrow">Why a second employee, not a second prompt</p>
         <h2>They check each other&rsquo;s work.</h2>
-        <p style="color:var(--text-mid);margin-top:1rem">A reviewing employee does not just re-read the draft. It has its own tools, its own credentials and its own context, so it goes back to the source data, runs the numbers itself, and disagrees when the numbers say something different.</p>
-        <p style="color:var(--text-mid)">This is the practical argument for a fleet instead of one assistant: asking a model to double-check itself gets you the same blind spot twice. A different employee with different access catches what the first one was never going to catch about itself.</p>
+        <p style="color:var(--text-mid);margin-top:1rem">A reviewing employee does not just re-read the draft. It has its own tools, credentials and context, so it goes back to the source data, runs the numbers itself, and disagrees when they say something different.</p>
+        <p style="color:var(--text-mid)">This is the practical argument for a fleet: asking a model to double-check itself gets you the same blind spot twice. A different employee with different access catches what the first one never would.</p>
         <ul class="checks">
           <li><strong>Different credentials</strong> &mdash; the reviewer reads the source system directly, not the draft&rsquo;s summary of it</li>
           <li><strong>Different rules</strong> &mdash; a reviewer&rsquo;s rules are about verification, not production</li>
@@ -552,7 +557,7 @@
   <div class="wrap">
     <p class="eyebrow">Dedicated, not shared</p>
     <h2 class="prose" id="acc-h">They are real employees. They have their own accounts.</h2>
-    <p class="lede prose" style="margin-top:1.1rem">A Nexus employee does not borrow a human&rsquo;s login. It gets its own &mdash; its own email address, its own chat handle, its own seat in your CRM &mdash; provisioned, permissioned, and revocable like anyone else on payroll.</p>
+    <p class="lede prose" style="margin-top:1.1rem">A Nexus employee does not borrow a human&rsquo;s login. It gets its own email address, its own chat handle and its own seat in your CRM, provisioned, permissioned, and revocable like anyone else on payroll.</p>
 
     <div class="two-col" style="margin-top:2.5rem">
       <div class="figure">
@@ -629,7 +634,7 @@
       </div>
       <div class="cell">
         <h3>A schedule files it</h3>
-        <p>Recurring cards that re-create themselves &mdash; the weekly rollup, the monthly report &mdash; on your timezone, with a run history you can audit.</p>
+        <p>Recurring cards that re-create themselves, the weekly rollup and the monthly report, on your timezone, with a run history you can audit.</p>
       </div>
       <div class="cell">
         <h3>A system files it</h3>
@@ -703,7 +708,7 @@
   <div class="wrap">
     <p class="eyebrow">How Nexus is different</p>
     <h2 class="prose" id="cmp-h">Against what you are running, and against the closest thing shipping.</h2>
-    <p class="lede prose" style="margin-top:1.1rem">Most teams are in the first column. Grok Bot is the nearest product to Nexus shipping today &mdash; persistent AI agents that sign in to your tools and work on their own. It is real and it works. Here is where we deliberately go a different way.</p>
+    <p class="lede prose" style="margin-top:1.1rem">Most teams are in the first column. Grok Bot is the nearest product to Nexus shipping today: persistent AI agents that sign in to your tools and work on their own. It is real and it works.</p>
 
     <div class="table-scroll">
       <table>
