@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Why AI projects fail — Corvino Labs</title>
+<meta name="description" content="Four reasons company AI projects quietly stop mattering: the wrong work gets automated, the tools are never connected, nobody is allowed to trust it, and it never leaves the person who built it." />
+<link rel="canonical" href="https://corvinolabs.com/why-ai-projects-fail/" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="mark"></span> Corvino Labs</a>
+    <div class="nav-links">
+      <a href="/foundation/">Foundation</a>
+      <a href="/nexus/">Nexus</a>
+      <a href="/nexus/compare/" class="nav-hide-xs">Compare</a>
+      <a href="/how-we-work/" class="nav-hide-xs">How we work</a>
+      <a href="/why-ai-projects-fail/" aria-current="page" class="nav-hide-sm">Why AI fails</a>
+    </div>
+    <a class="btn btn-nav" href="https://calendly.com/casey-corvinolabs/30min" target="_blank" rel="noopener" aria-label="Book a call"><span class="cta-long">Book a call</span><span class="cta-short">Book</span></a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Why AI projects fail</p>
+    <h1>Nothing exploded. It just stopped mattering.</h1>
+    <p class="lede">Company AI projects almost never fail with an incident. They fail by becoming optional &mdash; the demo lands, a few people keep using it for email, and two quarters later nobody can name a piece of work that moved. There are four reasons that happens, and none of them is the model.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://calendly.com/casey-corvinolabs/30min" target="_blank" rel="noopener">Book an intro call</a>
+      <a class="btn ghost" href="#fail-1">Start with the first one</a>
+    </div>
+    <nav class="pillrow" aria-label="The four failures">
+      <a class="pill" href="#fail-1">1 &middot; Wrong work</a>
+      <a class="pill" href="#fail-2">2 &middot; No access</a>
+      <a class="pill" href="#fail-3">3 &middot; No trust</a>
+      <a class="pill" href="#fail-4">4 &middot; No rollout</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ THE SHAPE OF IT ============ -->
+<section class="tint" aria-labelledby="shape-h">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">What failure actually looks like</p>
+        <h2 id="shape-h">The pilot doesn&rsquo;t get cancelled. It gets forgotten.</h2>
+      </div>
+      <div>
+        <p>Ask around a company six months after an AI rollout and you rarely hear that it went badly. You hear that it went <em>fine</em>. People liked it. It writes decent drafts. Nobody has changed how a single piece of real work gets done.</p>
+        <p>That is the failure, and it is hard to see precisely because there is no wreckage to point at. No budget owner has to admit anything. The project just slides from initiative to utility, and the 10x that justified it never shows up.</p>
+        <p>The four causes below are in the order they occur. Each one is enough to end a project on its own, and the later ones only get their chance because the earlier ones went unfixed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAILURE 1 ============ -->
+<section id="fail-1" aria-labelledby="fail-1-h">
+  <div class="wrap">
+    <p class="eyebrow">Failure 1 of 4 &middot; Before a line is written</p>
+    <h2 class="prose" id="fail-1-h">It automated work nobody actually does.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">The project starts with a tool that needs a use, so somebody picks the use in a conference room. What gets built is a plausible-sounding version of the job rather than the job &mdash; and the team goes back to doing the job.</p>
+
+    <div class="grid cols-3">
+      <div class="cell">
+        <span class="num">How it shows up</span>
+        <h3>The demo everyone applauds</h3>
+        <p>It drafts the thing beautifully. It also skips the four steps before the drafting, which are where the three days went.</p>
+      </div>
+      <div class="cell">
+        <span class="num">How it shows up</span>
+        <h3>Usage that peaks in week one</h3>
+        <p>Everyone tries it because it is new. Almost nobody comes back, and nobody asks why in a way that produces an answer.</p>
+      </div>
+      <div class="cell">
+        <span class="num">How it shows up</span>
+        <h3>The workaround nobody reports</h3>
+        <p>People run it, then quietly redo the output by hand. On paper adoption is fine. In practice the work got longer.</p>
+      </div>
+    </div>
+
+    <div class="figure" style="margin-top:2.5rem">
+      <p style="font-size:0.85rem;color:var(--text-mid);margin:0"><strong>A real week of the job it was built for</strong></p>
+      <div class="meter">
+        <div class="lbls"><span>What the pilot automated</span><span>Everything else in the week</span></div>
+        <div class="track"><div class="fill" style="width:12%"></div></div>
+      </div>
+      <p class="figure-cap">The shape we find most often when we go and watch. The automated slice is real, and it is nowhere near where the hours are. Nobody built the wrong thing on purpose &mdash; they built it from a description of the work instead of from the work.</p>
+    </div>
+
+    <ul class="checks">
+      <li><strong>The root cause is a missing week.</strong> Nobody sat with the people doing the job and watched it happen at the speed it actually happens.</li>
+      <li><strong>Descriptions of work are wrong in a predictable direction.</strong> They keep the interesting part and drop the waiting, the re-keying, and the four systems the task crosses on its way to done.</li>
+      <li><strong>The fix is unglamorous and cheap.</strong> A week of shadowing produces a ranked list with the hours behind each line &mdash; and a second list of what to leave alone.</li>
+    </ul>
+
+    <p class="note">This is the failure that makes the other three worth having. Nothing downstream &mdash; connections, rules, rollout &mdash; can rescue a system that is automating the wrong twelve percent.</p>
+  </div>
+</section>
+
+<!-- ============ FAILURE 2 ============ -->
+<section id="fail-2" class="tint" aria-labelledby="fail-2-h">
+  <div class="wrap">
+    <p class="eyebrow">Failure 2 of 4 &middot; During the build</p>
+    <h2 class="prose" id="fail-2-h">It couldn&rsquo;t reach the systems the work lives in.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">Real work crosses six systems. Most projects connect the three that ship with a connector and stop &mdash; so every chain runs until it hits the billing platform, then stops and waits for a person. That work didn&rsquo;t get automated. It got interrupted, and now it has a handoff in the middle of it.</p>
+
+    <div class="figure" style="margin-top:2.5rem">
+      <div class="pipe">
+        <div class="stage"><div class="st-t">Request lands</div><div class="st-w">Connected</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage"><div class="st-t">Pull the account</div><div class="st-w">Connected</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage human"><div class="st-t">Check what they were billed</div><div class="st-w">No connector &mdash; stops here</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage"><div class="st-t">Draft the reply</div><div class="st-w">Never reached</div></div>
+        <div class="arw" aria-hidden="true">&rarr;</div>
+        <div class="stage"><div class="st-t">Send and log it</div><div class="st-w">Never reached</div></div>
+      </div>
+      <p class="figure-cap">One missing system, and the two steps after it never run. The dark stage is not a safety checkpoint anybody chose &mdash; it is a gap, and somebody now has to notice the work is sitting there.</p>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="cell">
+        <span class="num">01</span>
+        <h3>&ldquo;We integrated with Slack and Drive&rdquo;</h3>
+        <p>The tools with an official connector go in during the first week and integration is declared finished. Those are rarely the systems the money moves through.</p>
+      </div>
+      <div class="cell">
+        <span class="num">02</span>
+        <h3>The vertical software gets a pass</h3>
+        <p>The platform your industry runs on has an API and no connector. Building one is a week of work nobody scoped, so it becomes out of scope, so the chain breaks there permanently.</p>
+      </div>
+      <div class="cell">
+        <span class="num">03</span>
+        <h3>The internal tool is declared impossible</h3>
+        <p>The dashboard your team built two years ago will never have an off-the-shelf integration. It is also where three of the answers live.</p>
+      </div>
+      <div class="cell">
+        <span class="num">04</span>
+        <h3>Setup is left to each person</h3>
+        <p>A connection guide goes out and half the team never finishes it. The same workflow now works for some people and silently doesn&rsquo;t for others.</p>
+      </div>
+    </div>
+
+    <ul class="checks">
+      <li><strong>Partial access is worse than none.</strong> A workflow that completes eighty percent of the time still needs somebody watching the other twenty &mdash; which is most of the supervision cost and none of the relief.</li>
+      <li><strong>&ldquo;No API&rdquo; is not the end of it.</strong> When a vendor offers nothing, the browser is the integration &mdash; signed in, driving the same screens your team does.</li>
+      <li><strong>Connected once, for the team.</strong> Not a setup task each person works through alone on their own laptop.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FAILURE 3 ============ -->
+<section id="fail-3" aria-labelledby="fail-3-h">
+  <div class="wrap">
+    <p class="eyebrow">Failure 3 of 4 &middot; At handover</p>
+    <h2 class="prose" id="fail-3-h">Nobody was ever allowed to trust it with anything that mattered.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">With no stated limits, every manager sets their own by instinct, and instinct says keep the important work. So the system gets the low-stakes end of the job, the value stays small, and the number at the end of the pilot never justifies a next phase.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">The work</th><th scope="col">Handed over?</th><th scope="col">The reason, when you ask</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Internal summaries</th><td class="us">Yes</td><td>Nobody outside sees it, so nobody had to decide anything.</td></tr>
+          <tr><th scope="row">First-draft emails</th><td class="us">Yes, then rewritten</td><td>&ldquo;It doesn&rsquo;t sound like us&rdquo; &mdash; and nobody ever told it how you sound.</td></tr>
+          <tr><th scope="row">Anything with a price in it</th><td>No</td><td>It might guess, and a customer will hold us to the number.</td></tr>
+          <tr><th scope="row">Anything a customer receives</th><td>No</td><td>There is no rule about who it may contact, so the answer defaults to nobody.</td></tr>
+          <tr><th scope="row">Anything that spends money</th><td>No</td><td>No limit exists, so the only limit is the one in the manager&rsquo;s head.</td></tr>
+          <tr><th scope="row">Anything auditable later</th><td>No</td><td>Nobody could say afterwards what it did or why, so nobody risked it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="checks">
+      <li><strong>This reads as caution and behaves as failure.</strong> Every individual decision is defensible. The sum of them is a system that only touches work nobody was worried about &mdash; which is work with very little time in it.</li>
+      <li><strong>Rules are not a brake, they are the permission slip.</strong> Spend caps, a contact list, brand voice, a written list of what it must never guess at, and a named person it stops and asks. Those are what let a manager hand over something real.</li>
+      <li><strong>Written down beats hoped for.</strong> A policy nobody enforces produces exactly the same caution as no policy at all, because nobody believes it.</li>
+      <li><strong>Logged and attributable.</strong> If a manager can find out why something went out on Tuesday, they will approve more on Monday.</li>
+    </ul>
+
+    <p class="note">The tell for this failure is that nothing ever went wrong. A pilot with no incidents and no impact was not being run carefully &mdash; it was being kept away from the job.</p>
+  </div>
+</section>
+
+<!-- ============ FAILURE 4 ============ -->
+<section id="fail-4" class="tint" aria-labelledby="fail-4-h">
+  <div class="wrap">
+    <p class="eyebrow">Failure 4 of 4 &middot; After it works</p>
+    <h2 class="prose" id="fail-4-h">It never got past the person who built it.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">This is the hardest one to watch, because the thing works. Somebody on the team is getting genuine leverage &mdash; they spent a hundred hours to get there and it shows. It lives in their account, in their prompts, in their head. The other forty people have none of it, and the company average doesn&rsquo;t move.</p>
+
+    <div class="figure" style="margin-top:2.5rem">
+      <div class="board">
+        <div class="col">
+          <div class="col-t">Your power user</div>
+          <div class="card on">Proposal workflow <em>daily</em></div>
+          <div class="card on">Month-end close <em>monthly</em></div>
+          <div class="card on">Ticket triage <em>daily</em></div>
+          <div class="card on">Account research <em>weekly</em></div>
+        </div>
+        <div class="col">
+          <div class="col-t">Two more who figured it out</div>
+          <div class="card on">Ticket triage <em>sometimes</em></div>
+          <div class="card">Proposal workflow <em>heard about it</em></div>
+        </div>
+        <div class="col">
+          <div class="col-t">The other forty people</div>
+          <div class="card">Drafting emails <em>occasionally</em></div>
+        </div>
+        <div class="col">
+          <div class="col-t">Everyone hired since</div>
+          <div class="card">Nothing installed</div>
+        </div>
+      </div>
+      <p class="figure-cap">The same rollout, counted by person instead of by feature. A pilot reported as a success is usually this picture with only the first column on the slide.</p>
+    </div>
+
+    <ul class="checks">
+      <li><strong>A pilot of volunteers proves the wrong thing.</strong> It proves motivated people can get value from it. The question was whether the median person on the team will, and volunteers cannot answer that.</li>
+      <li><strong>Training built for the enthusiast excludes the people who needed it.</strong> The person who has never opened an AI tool is the one with the most slack in their week.</li>
+      <li><strong>The gap reopens the moment you stop.</strong> If the setup is not part of onboarding, every hire after the rollout starts at zero and the average slides back down.</li>
+      <li><strong>It compounds.</strong> Every month the difference between your best person and everybody else stays a hundred hours of private effort, it gets wider and more expensive to close.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ THE PATTERN ============ -->
+<section aria-labelledby="pattern-h">
+  <div class="wrap">
+    <p class="eyebrow">The pattern</p>
+    <h2 class="prose" id="pattern-h">Four failures, four steps that prevent them.</h2>
+    <p class="lede prose" style="margin-top:1.1rem">None of these is a model problem, and none of them is solved by a better prompt. Each has a specific, boring step that stops it &mdash; which is why our process is in the order it is in.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">The failure</th><th scope="col">What actually went missing</th><th scope="col">The step that prevents it</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Wrong work automated</th><td>A week of watching the job before anything got built.</td><td class="us">Step 1 &mdash; Shadow</td></tr>
+          <tr><th scope="row">Couldn&rsquo;t reach the systems</th><td>The connectors nobody ships: your vertical software, your internal tools, the vendor with no API.</td><td class="us">Step 2 &mdash; Connect</td></tr>
+          <tr><th scope="row">Nobody trusted it</th><td>Enforced limits a manager set on purpose, and a log that answers for what it did.</td><td class="us">Step 4 &mdash; Rules</td></tr>
+          <tr><th scope="row">Never left one laptop</th><td>The whole team installed and trained, and kept current as people join.</td><td class="us">Step 5 &mdash; Roll out</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:2rem"><a class="arrow-link" href="/how-we-work/">The five steps in full, week by week <span aria-hidden="true">&rarr;</span></a></p>
+
+    <p class="note">Step 3 &mdash; encoding how your team actually does the work &mdash; isn&rsquo;t on this list because it is not where projects fail. It is what the other four steps exist to make possible.</p>
+  </div>
+</section>
+
+<!-- ============ NOT A FAILURE ============ -->
+<section class="tint" aria-labelledby="notfail-h">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">Worth saying plainly</p>
+        <h2 id="notfail-h">One thing that looks like failure isn&rsquo;t.</h2>
+      </div>
+      <div>
+        <p>Deciding a piece of work isn&rsquo;t worth automating is a correct outcome, not a defeat. Some jobs are judgement the whole way down, some run four times a year, and some are already fast. Automating those costs more than it returns and leaves behind a system somebody has to maintain.</p>
+        <p>We come back from a week of shadowing with two lists for exactly this reason: what is worth building, and what to leave alone. The second list is shorter, usually unwelcome, and usually contains the thing somebody was most excited about.</p>
+        <p>A project that built four things and said no to the fifth on purpose is not on this page. That is what the process is supposed to produce.</p>
+        <p><a class="arrow-link" href="/foundation/">See what does get built &mdash; Foundation <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" aria-labelledby="cta-h">
+  <div class="wrap">
+    <h2 class="prose" id="cta-h">Recognise more than one of these?</h2>
+    <p class="lede prose" style="margin-top:1.1rem;color:#C9C9C9">Thirty minutes. Tell us what happened with the last one and we will tell you honestly which of the four it was &mdash; and whether it is worth another run.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://calendly.com/casey-corvinolabs/30min" target="_blank" rel="noopener">Book an intro call</a>
+      <a class="btn ghost" href="/how-we-work/">See how we work</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div>
+      <div style="color:var(--text);font-weight:600">Corvino Labs, LLC</div>
+      <div>San Juan, PR &middot; <a href="mailto:casey@corvinolabs.com">casey@corvinolabs.com</a></div>
+    </div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/foundation/">Foundation</a>
+      <a href="/nexus/">Nexus</a>
+      <a href="/nexus/compare/">Compare</a>
+      <a href="/how-we-work/">How we work</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

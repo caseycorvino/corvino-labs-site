@@ -106,6 +106,14 @@ section.tint { background: var(--bg-alt); }
   .nav-links { gap: 0.9rem; }
   .nav-links a { font-size: 0.85rem; }
 }
+/* a fifth link only fits from ~700px up — below that it pushes the bar into a 50px
+   scroll, so "Why AI fails" is the first to go. Measured 0 overflow at 621 and 700. */
+@media (max-width: 700px) {
+  .nav-links .nav-hide-sm { display: none; }
+  /* on its own page it survives, and four other links do not fit beside it —
+     same standalone treatment the 620px band gives the other collapsed links */
+  .nav-links:has(.nav-hide-sm[aria-current="page"]) a:not([aria-current="page"]) { display: none; }
+}
 /* smallest phones (320px): the bar is 31px over budget on the prescribed trim alone,
    so the wrap gap, bar padding and wordmark give up the rest. Measured 0 overflow at 320. */
 @media (max-width: 360px) {
