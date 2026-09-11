@@ -187,6 +187,19 @@ section.tint { background: var(--bg-alt); }
 .grid > .cell p { color: var(--text-mid); font-size: 0.96rem; }
 @media (max-width: 800px) { .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; } }
 
+/* A .pairs grid holds {problem} + {how we do it differently} in one cell. The cell is a
+   flex column and the answer takes margin-top:auto, so within a row every divider lands on
+   the same line however unevenly the problem copy wraps. The problem <p> above it is not
+   :last-child, so it keeps its 1.1em bottom margin and the divider can never sit flush
+   against the text when a cell happens to be the tallest in its row. */
+.grid.pairs > .cell { display: flex; flex-direction: column; }
+.grid.pairs > .cell .answer { margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--line-mid); }
+.grid.pairs > .cell .answer .lbl {
+  display: block; margin-bottom: 0.4rem;
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text);
+}
+
 .num {
   font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
   color: var(--text-dim); display: block; margin-bottom: 0.9rem;
