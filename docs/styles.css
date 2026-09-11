@@ -96,23 +96,27 @@ section.tint { background: var(--bg-alt); }
   /* the current page always survives a collapse — it is the only wayfinding on a phone */
   .nav-links a[aria-current="page"] { display: inline !important; }
 }
+/* a fifth link first fits at 720px (measured on /how-we-work/, the longest label:
+   701 -> 17px over, 715 -> 4px over, 720 -> 0 with 14px CTA clearance), so
+   "Why AI fails" is the first to go below it. */
+@media (max-width: 719px) {
+  .nav-links .nav-hide-sm { display: none; }
+  /* on its own page it survives the collapse, so the two xs links step down with it
+     and the row stays at three — five links overflow this whole band. */
+  .nav-links:has(.nav-hide-sm[aria-current="page"]) .nav-hide-xs:not([aria-current="page"]) { display: none; }
+}
 @media (max-width: 620px) {
   .nav-links .nav-hide-xs { display: none; }
   .nav-links a[aria-current="page"] { display: inline !important; }
-  /* when the surviving link is one of the collapsed ones it stands alone — three links
-     do not fit on a phone, and the footer carries the full nav on every page */
-  .nav-links:has(.nav-hide-xs[aria-current="page"]) a:not([aria-current="page"]) { display: none; }
   .wordmark { font-size: 0.85rem; }
   .nav-links { gap: 0.9rem; }
   .nav-links a { font-size: 0.85rem; }
 }
-/* a fifth link only fits from ~700px up — below that it pushes the bar into a 50px
-   scroll, so "Why AI fails" is the first to go. Measured 0 overflow at 621 and 700. */
-@media (max-width: 700px) {
-  .nav-links .nav-hide-sm { display: none; }
-  /* on its own page it survives, and four other links do not fit beside it —
-     same standalone treatment the 620px band gives the other collapsed links */
-  .nav-links:has(.nav-hide-sm[aria-current="page"]) a:not([aria-current="page"]) { display: none; }
+/* three links stop fitting below 465px (measured on /how-we-work/: 430 -> 32px over,
+   460 -> 5px over, 465 -> 0 with 14px CTA clearance). Below that the current page
+   stands alone; the footer carries the full nav on every page, so nothing is lost. */
+@media (max-width: 464px) {
+  .nav-links:has(a[aria-current="page"]) a:not([aria-current="page"]) { display: none; }
 }
 /* smallest phones (320px): the bar is 31px over budget on the prescribed trim alone,
    so the wrap gap, bar padding and wordmark give up the rest. Measured 0 overflow at 320. */
@@ -339,7 +343,7 @@ td.us { color: var(--text); font-weight: 500; background: var(--bg-alt); }
   .stack .seam { text-align: left; }
 }
 
- . "/* ---------- skip link (keyboard a11y) ---------- */"
+/* ---------- skip link (keyboard a11y) ---------- */
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;
   background: var(--bg-ink); color: #fff; text-decoration: none;
