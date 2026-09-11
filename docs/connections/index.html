@@ -228,7 +228,7 @@
       <h3>Search and the open web</h3>
       <div class="tiles compact">
         <div class="tile"><b>SerpAPI</b><span>SerpAPI</span></div>
-        <div class="tile"><b>Agent Browser</b><span>Corvino Labs</span></div>
+        <div class="tile"><b>Agent Browser</b><span>Vercel Labs</span></div>
         <div class="tile more"><b>&hellip; and the one your industry runs on that nobody else has heard of</b><span>We build that one</span></div>
       </div>
     </div>
@@ -295,7 +295,7 @@
   <div class="wrap">
     <p class="eyebrow">Our own shop</p>
     <h2 class="prose">The connections our own AI employees run on.</h2>
-    <p class="lede prose" style="margin-top:1.1rem">Corvino Labs runs on Nexus. These are the live connections behind it today &mdash; not a roadmap, not a demo account. It&rsquo;s the shortest honest answer to &ldquo;does this actually work.&rdquo;</p>
+    <p class="lede prose" style="margin-top:1.1rem">Corvino Labs runs on Nexus. These are the connections wired into it today &mdash; not a roadmap, not a demo account. It&rsquo;s the shortest honest answer to &ldquo;does this actually work.&rdquo;</p>
 
     <div class="table-scroll">
       <table>
@@ -309,22 +309,22 @@
         </thead>
         <tbody>
           <tr>
+            <th>Claude Code</th>
+            <td>Anthropic</td>
+            <td>Headless CLI session, one per run</td>
+            <td>The engine every other row plugs into. Each AI employee is spawned as its own session with its own rules, skills and tool grants.</td>
+          </tr>
+          <tr>
             <th>Google Workspace</th>
             <td>Google</td>
             <td>MCP server, per-employee scoped credentials</td>
             <td>Gmail, Calendar and Drive. Each AI employee reaches only the accounts it owns &mdash; it cannot draft mail as anybody else.</td>
           </tr>
           <tr>
-            <th>Asana</th>
-            <td>Asana</td>
-            <td>MCP server</td>
-            <td>Work is assigned, picked up and reported against in the same project tool the humans use.</td>
-          </tr>
-          <tr>
-            <th>QuickBooks</th>
-            <td>Intuit</td>
-            <td>OAuth against the vendor API</td>
-            <td>Books, invoices and reconciliation, with approval gates in front of anything that moves money.</td>
+            <th>GitHub</th>
+            <td>Microsoft</td>
+            <td>Command-line tools inside each employee&rsquo;s sandbox</td>
+            <td>Employees branch, commit and push their own work, with review before anything merges. This site is deployed from one of those repositories.</td>
           </tr>
           <tr>
             <th>SerpAPI</th>
@@ -334,9 +334,9 @@
           </tr>
           <tr>
             <th>Agent Browser</th>
-            <td>Corvino Labs</td>
+            <td>Vercel Labs</td>
             <td>Command-line tool, isolated profile per employee</td>
-            <td>The no-API case. A real signed-in session per employee &mdash; no shared cookies, no shared tabs.</td>
+            <td>The no-API case. We give each employee its own browser profile, so a signed-in session is genuinely theirs &mdash; no shared cookies, no shared tabs.</td>
           </tr>
         </tbody>
       </table>
