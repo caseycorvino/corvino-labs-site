@@ -242,7 +242,8 @@ section.tint { background: var(--bg-alt); }
 .tint .stat { background: var(--bg-alt); }
 .stat .v { font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
 .stat .l { margin-top: 0.6rem; font-size: 0.88rem; color: var(--text-dim); }
-@media (max-width: 700px) { .stats { grid-template-columns: 1fr; } }
+.stats.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .stats, .stats.two { grid-template-columns: 1fr; } }
 
 /* ---------- simple list ---------- */
 .checks { list-style: none; margin: 1.6rem 0 0; padding: 0; }
