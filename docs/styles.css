@@ -161,20 +161,105 @@ section.tint { background: var(--bg-alt); }
 /* ---------- hero ---------- */
 .hero { padding: clamp(4rem, 11vw, 7.5rem) 0 clamp(3.5rem, 8vw, 5.5rem); border-top: 0; }
 .hero h1 { max-width: 20ch; }
+/* The homepage H1 breaks after the rotator, so line two has to hold "work for your whole
+   team." intact. At 20ch it broke again and left "team." alone on a third line. */
+.hero-home h1 { max-width: 27ch; }
 .hero .lede { max-width: 46ch; margin-top: 1.4rem; }
-/* The brief writes the H1 as "Make {AI} work..." — the braces are a styling cue,
-   not copy. AI renders as an inked chip in the same black-block language as the
-   wordmark and the buttons, so the page stays monochrome and no brace ships. */
-.ai-token {
+/* The brief writes the H1 as "Make {AI} work..." — the braces are a styling cue, not
+   copy. It renders as the old site's rotator: the word cycles through the harnesses we
+   actually deploy, each in its own color off the node-graph palette behind it. Every
+   .rot-item is absolutely positioned in the same box, so nothing reflows on a switch and
+   min-width reserves room for the longest word. Colors are darkened off the graph's
+   catColors (#FF2E9E / #FF4D3D / #B84DFF / #33FF88), which are tuned for glowing dots on
+   a light page and would be unreadable as text at those values. */
+.rotator {
+  position: relative;
   display: inline-block;
-  background: var(--bg-ink);
-  color: #fff;
-  border-radius: 4px;
-  padding: 0.02em 0.2em 0.08em;
-  margin-right: 0.04em;
-  letter-spacing: 0.01em;
+  overflow: hidden;
+  min-width: 5.9ch; /* "Copilot", the longest word, measured at the H1 clamp */
+  height: 1em;
+  vertical-align: top;
 }
-#ai-token-text { display: inline-block; transition: opacity 0.22s ease, transform 0.22s ease; }
+.rot-item {
+  /* Left-aligned and flush, exactly as the old site had it. The H1 now breaks after the
+     rotator, so the slack a fixed-width box leaves after a short word like "AI" falls at
+     the end of a line where nothing sits next to it. Centering was the old fix for having
+     "work" on the same line, and it made the word visibly slide left and right on each
+     switch. */
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(14%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.rot-item.active { opacity: 1; transform: translateY(0); }
+/* One per category in the graph behind it, in the graph's own order: the core, then
+   Connections, Rules, Skills, Training. The graph's catColors (#FF2E9E / #FF4D3D /
+   #33FF88 / #B84DFF) are tuned for glowing dots on a dark field and are unreadable as
+   text on white, so these are the same hues taken down to a legible value. "AI" keeps
+   the core's near-black so the first paint reads as part of the sentence. */
+.rot-item[data-model="ai"]      { color: #111111; }
+.rot-item[data-model="claude"]  { color: #D1007A; }
+.rot-item[data-model="codex"]   { color: #D8401F; }
+.rot-item[data-model="gemini"]  { color: #7A2BD6; }
+.rot-item[data-model="copilot"] { color: #0F8F4F; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* The hero gets the loud version of the network: the full labeled node-graph from the
+   old site, scoped to this section. The hero paints its own opaque background so the
+   quiet page-wide net in #bg-canvas does not show through and double up here. */
+.hero { position: relative; }
+.hero .wrap { position: relative; z-index: 2; }
+/* The opaque fill lives on the stage, not on .hero — every page uses .hero, and only
+   this one should hide the page-wide net behind it. */
+/* Only the homepage hero goes full-height. .hero is on every page and the rest of them
+   want their normal padded header, so the viewport sizing hangs off .hero-home. */
+.hero-home {
+  /* The nav is sticky, so it still takes its row in flow above the hero. A flat 100vh
+     would push the bottom of the hero below the fold by exactly the nav height. */
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  align-items: center;
+}
+.hero-home > .wrap { width: 100%; }
+.hero-graph-stage {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+  background: var(--bg); pointer-events: none;
+}
+.graph-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  opacity: 0.44;
+  /* The old site ran this at 0.5 across a hero with no copy over it. Here the headline
+     sits on top, so the left column is knocked back rather than cut out: the graph now
+     reaches edge to edge and only dims where the text needs the contrast. */
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.38) 30%, rgba(0,0,0,0.82) 58%, #000 76%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.38) 30%, rgba(0,0,0,0.82) 58%, #000 76%);
+  /* hero-graph.js reads its palette off these, by the old site's names. */
+  --core: #111111;
+  --accent: #6B6B6B;
+  --conn: #404040;
+  --teal: #6B6B6B;
+  --font-sans: "Helvetica Neue";
+}
+@media (max-width: 720px) {
+  /* Copy goes full-bleed here, so there is no clear column to fade into. Drop it to
+     texture and mask from the bottom instead of the side. */
+  .graph-bg {
+    opacity: 0.3;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, #000 55%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, #000 55%);
+  }
+  /* 100vh on a phone is taller than the visible viewport and pushes the buttons under
+     the browser chrome. svh above handles modern browsers; drop the floor for the rest. */
+  .hero-home { min-height: auto; display: block; }
+}
 /* "See how EPL Media became AI Native" is far wider than the old secondary label.
    Let a hero button shrink and wrap its own text instead of pushing the 320px
    viewport into a horizontal scroll. */
@@ -537,7 +622,7 @@ a.pill:hover { border-color: var(--line-ink); color: var(--text); }
 .etym {
   margin: 1.6rem 0 0.4rem; padding: 1rem 1.2rem;
   border-left: 2px solid var(--line-ink); background: var(--bg-alt);
-  max-width: 34ch;
+  max-width: 52ch;
 }
 .etym p { margin: 0; }
 .etym p + p { margin-top: 0.35rem; color: var(--text-mid); }

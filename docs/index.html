@@ -26,10 +26,11 @@
 </nav>
 
 <!-- ============ HERO: the desired state ============ -->
-<header class="hero">
+<header class="hero hero-home">
+  <div class="hero-graph-stage" aria-hidden="true"><canvas id="graph-bg" class="graph-bg"></canvas></div>
   <div class="wrap">
     <p class="eyebrow">AI consulting, built in production</p>
-    <h1>Make <span class="ai-token"><span id="ai-token-text">AI</span></span> work for your whole team.</h1>
+    <h1>Make <span class="rotator" aria-hidden="true"><span class="rot-item active" data-model="ai">AI</span><span class="rot-item" data-model="claude">Claude</span><span class="rot-item" data-model="codex">Codex</span><span class="rot-item" data-model="gemini">Gemini</span><span class="rot-item" data-model="copilot">Copilot</span></span><span class="sr-only">AI</span><br>work for your whole team.</h1>
     <p class="lede">We deliver the 10x promise of AI by making AI work for everyone… even if you aren't technical.</p>
     <div class="btn-row">
       <a class="btn" href="https://calendly.com/casey-corvinolabs/30min" target="_blank" rel="noopener">Book an intro call</a>
@@ -419,149 +420,8 @@
   </div>
 </footer>
 
-<script>
-// ---------- full-page particle-network background ----------
-(function () {
-  var canvas = document.getElementById('bg-canvas');
-  if (!canvas || !canvas.getContext) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var ctx = canvas.getContext('2d');
-  var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
-  var nodes = [];
-  var COUNT = 60;
-
-  function resize() {
-    W = window.innerWidth; H = window.innerHeight;
-    canvas.width = W * DPR; canvas.height = H * DPR;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-
-  function seed() {
-    nodes = [];
-    for (var i = 0; i < COUNT; i++) {
-      nodes.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.14,
-        vy: (Math.random() - 0.5) * 0.14,
-        r: Math.random() * 1.6 + 1.2
-      });
-    }
-  }
-
-  resize();
-  seed();
-  window.addEventListener('resize', function () {
-    resize();
-    nodes.forEach(function (n) {
-      n.x = Math.min(n.x, W);
-      n.y = Math.min(n.y, H);
-    });
-  });
-
-  function step() {
-    ctx.clearRect(0, 0, W, H);
-
-    nodes.forEach(function (n) {
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0) { n.x = 0; n.vx *= -1; }
-      if (n.x > W) { n.x = W; n.vx *= -1; }
-      if (n.y < 0) { n.y = 0; n.vy *= -1; }
-      if (n.y > H) { n.y = H; n.vy *= -1; }
-    });
-
-    var maxDist = Math.sqrt(W * W + H * H);
-    var NEIGHBORS = 2;
-    ctx.lineWidth = 1;
-    for (var i = 0; i < nodes.length; i++) {
-      var dists = [];
-      for (var j = 0; j < nodes.length; j++) {
-        if (j === i) continue;
-        var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-        dists.push({ j: j, d: Math.sqrt(dx * dx + dy * dy) });
-      }
-      dists.sort(function (p, q) { return p.d - q.d; });
-      for (var k = 0; k < Math.min(NEIGHBORS, dists.length); k++) {
-        var b = nodes[dists[k].j];
-        var alpha = Math.max(0.02, (1 - dists[k].d / maxDist) * 0.16);
-        ctx.strokeStyle = 'rgba(17,17,17,' + alpha + ')';
-        ctx.beginPath();
-        ctx.moveTo(nodes[i].x, nodes[i].y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-    }
-
-    nodes.forEach(function (n) {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(17,17,17,0.28)';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-})();
-
-// ---------- hero word switcher ----------
-(function () {
-  var el = document.getElementById('ai-token-text');
-  if (!el) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var WORDS = ['AI', 'Claude', 'Codex', 'Gemini', 'Copilot'];
-  var i = 0;
-
-  setInterval(function () {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(0.2em)';
-    setTimeout(function () {
-      i = (i + 1) % WORDS.length;
-      el.textContent = WORDS[i];
-      el.style.transform = 'translateY(-0.2em)';
-      requestAnimationFrame(function () {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-    }, 220);
-  }, 2200);
-})();
-
-// ---------- enablement installer checklist ----------
-(function () {
-  var list = document.getElementById('ena-list');
-  var progress = document.getElementById('ena-progress');
-  if (!list || !progress) return;
-
-  var items = Array.prototype.slice.call(list.querySelectorAll('.ena-item'));
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function run() {
-    items.forEach(function (el, idx) {
-      setTimeout(function () {
-        el.classList.add('done');
-        progress.style.width = (((idx + 1) / items.length) * 100) + '%';
-      }, reduceMotion ? 0 : idx * 260);
-    });
-  }
-
-  if (!('IntersectionObserver' in window)) { run(); return; }
-  var seen = false;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting && !seen) {
-        seen = true;
-        run();
-        io.disconnect();
-      }
-    });
-  }, { threshold: 0.4 });
-  io.observe(list);
-})();
-</script>
+<script src="/site.js" defer></script>
+<script src="/hero-graph.js" defer></script>
 
 </body>
 </html>
