@@ -144,26 +144,50 @@
     <h2 class="prose" id="emp-h">An AI employee is a file, and the file is the source of truth.</h2>
     <p class="lede prose" style="margin-top:1.1rem">Not settings buried in a vendor dashboard. Each employee is a definition we write with you and keep in version control &mdash; so you can read it, diff it, review a change to it, and roll it back.</p>
 
-    <pre class="codeblock" aria-label="Example AI employee definition"><span class="c"># employees/ridge/employee.json</span>
-{
-  <b>"name"</b>:        "Ridge",
-  <b>"role"</b>:        "Campaign Analyst",
-  <b>"reports_to"</b>:  "head-of-marketing",
-  <b>"owns"</b>:        ["attribution", "spend reporting", "data validation"],
-  <b>"traits"</b>:      ["Precise", "Skeptical of its own numbers"],
-  <b>"accounts"</b>:    ["ridge@yourcompany.com", "@ridge", "crm:seat-114"],
-  <b>"connections"</b>: ["warehouse:read", "crm:read", "ads:read", "drive:rw"],
-  <b>"skills"</b>:      ["validate-report-data", "weekly-spend-rollup"],
-  <b>"reviewer"</b>:    "nova",
-  <b>"model"</b>:       "auto",          <span class="c">// cheapest model that can do the job</span>
-  <b>"budget"</b>:      { "per_run_usd": 10, "weekly_usd": 400 }
-}
-
-<span class="c"># employees/ridge/RULES.md — the actual boundary, in plain language
-#   NEVER write to the warehouse. Read-only, always.
-#   NEVER report a number you did not recompute from source.
-#   If a figure cannot be reconciled, stop and ask. Do not estimate.</span></pre>
-    <p class="figure-cap">Redacted example. The rules file is prose on purpose: it is the document a manager actually reads, edits and signs off on.</p>
+    <div class="idcard" aria-label="Example AI employee definition">
+      <div class="idcard-top">
+        <span class="idcard-avatar">RG</span>
+        <div>
+          <div class="idcard-name">Ridge</div>
+          <div class="idcard-role">Campaign Analyst</div>
+        </div>
+        <div class="idcard-cap">
+          <div class="idcard-cap-v">$400<span>/wk</span></div>
+          <div class="idcard-cap-l">Spend cap</div>
+        </div>
+      </div>
+      <div class="idcard-body">
+        <div class="idcard-field">
+          <div class="idcard-k">Reports to</div>
+          <div class="idcard-v">Head of Marketing &middot; reviewed by Nova</div>
+        </div>
+        <div class="idcard-field">
+          <div class="idcard-k">Owns</div>
+          <div class="idcard-v"><span class="badge">Attribution</span><span class="badge">Spend reporting</span><span class="badge">Data validation</span></div>
+        </div>
+        <div class="idcard-field">
+          <div class="idcard-k">Accounts</div>
+          <div class="idcard-v"><span class="badge">Email</span><span class="badge">Slack</span><span class="badge">CRM seat</span></div>
+        </div>
+        <div class="idcard-field">
+          <div class="idcard-k">Connections</div>
+          <div class="idcard-v"><span class="badge">Warehouse &middot; read</span><span class="badge">CRM &middot; read</span><span class="badge">Ads &middot; read</span><span class="badge">Drive &middot; read/write</span></div>
+        </div>
+        <div class="idcard-field">
+          <div class="idcard-k">Skills</div>
+          <div class="idcard-v"><span class="badge">Validate report data</span><span class="badge">Weekly spend rollup</span></div>
+        </div>
+      </div>
+      <div class="idcard-rules">
+        <div class="idcard-rules-t">What it can never do</div>
+        <ul>
+          <li>Never writes to the warehouse. Read-only, always.</li>
+          <li>Never reports a number it did not recompute from source.</li>
+          <li>If a figure cannot be reconciled, it stops and asks instead of estimating.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="figure-cap">Redacted example. The rules are written in plain language on purpose: it is the document a manager actually reads, edits and signs off on, not a config file.</p>
 
     <h3 style="margin-top:3rem">What each part does at runtime</h3>
     <div class="table-scroll">

@@ -436,16 +436,35 @@ a.pill:hover { border-color: var(--line-ink); color: var(--text); }
 }
 @media (max-width: 440px) { .chart-row { grid-template-columns: 1fr; } }
 
-/* ========== nexus: config / spec code block ========== */
-.codeblock {
-  margin: 2.5rem 0 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.74rem; line-height: 1.75;
-  background: var(--bg-ink); color: #E4E4E4;
-  border-radius: var(--radius); padding: 1.1rem 1.2rem; overflow-x: auto;
+/* ========== nexus: employee id card ========== */
+.idcard { margin: 2.5rem 0 0; border: 1px solid var(--line-mid); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
+.idcard-top { display: flex; align-items: center; gap: 0.9rem; padding: 1.2rem 1.3rem; background: var(--bg-ink); color: #fff; flex-wrap: wrap; }
+.idcard-avatar {
+  width: 44px; height: 44px; border-radius: 8px; flex: none;
+  background: #fff; color: var(--bg-ink);
+  font-weight: 700; font-size: 1rem;
+  display: inline-flex; align-items: center; justify-content: center;
 }
-.codeblock .c { color: #8A8A8A; }
-.codeblock b { color: #fff; font-weight: 600; }
+.idcard-name { font-weight: 700; font-size: 1.05rem; }
+.idcard-role { font-size: 0.8rem; color: #C9C9C9; margin-top: 0.15rem; }
+.idcard-cap { margin-left: auto; text-align: right; }
+.idcard-cap-v { font-weight: 700; font-size: 1.05rem; }
+.idcard-cap-v span { font-weight: 400; font-size: 0.72rem; color: #A8A8A8; }
+.idcard-cap-l { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: #A8A8A8; margin-top: 0.1rem; }
+.idcard-body { padding: 1.2rem 1.3rem; display: grid; gap: 0.9rem; }
+.idcard-field { display: grid; grid-template-columns: 130px 1fr; gap: 0.8rem; align-items: start; }
+.idcard-k { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); padding-top: 0.2rem; }
+.idcard-v { display: flex; flex-wrap: wrap; gap: 0.35rem; font-size: 0.88rem; color: var(--text-mid); align-items: center; }
+.idcard-v .badge { color: var(--text-mid); font-size: 0.62rem; }
+.idcard-rules { border-top: 1px solid var(--line); padding: 1.1rem 1.3rem 1.3rem; background: var(--bg-alt); }
+.idcard-rules-t { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin-bottom: 0.6rem; }
+.idcard-rules ul { margin: 0; padding: 0; list-style: none; }
+.idcard-rules li { font-size: 0.88rem; color: var(--text); padding: 0.3rem 0 0.3rem 1.1rem; position: relative; }
+.idcard-rules li::before { content: "\2022"; position: absolute; left: 0; color: var(--text-dim); }
+@media (max-width: 560px) {
+  .idcard-field { grid-template-columns: 1fr; gap: 0.3rem; }
+  .idcard-cap { margin-left: 0; text-align: left; }
+}
 
 /* ========== nexus: app mockup (board UI) ========== */
 .app { border: 1px solid var(--line-mid); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
