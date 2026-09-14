@@ -177,6 +177,10 @@
           <div class="idcard-k">Skills</div>
           <div class="idcard-v"><span class="badge">Validate report data</span><span class="badge">Weekly spend rollup</span></div>
         </div>
+        <div class="idcard-field">
+          <div class="idcard-k">Model</div>
+          <div class="idcard-v">Auto &middot; routes to the cheapest model that can do the job</div>
+        </div>
       </div>
       <div class="idcard-rules">
         <div class="idcard-rules-t">What it can never do</div>
@@ -686,13 +690,18 @@
       </div>
       <div>
         <p class="eyebrow">Running lean</p>
-        <h2>Model-agnostic. Cost-routed by default.</h2>
-        <p style="color:var(--text-mid);margin-top:1rem">Nexus is not locked to one model or one vendor&rsquo;s pricing. Cheap models handle cheap tasks, frontier models step in when it matters, and the flat-rate subscriptions you already pay for get used before metered API spend.</p>
+        <h2>Your subscriptions do the work, not metered API pricing.</h2>
+        <p style="color:var(--text-mid);margin-top:1rem">Metered API access is priced per token, and it adds up fast at real usage. Nexus runs on the flat-rate subscriptions your team already pays for instead, and only reaches for metered API when a subscription genuinely cannot do the job.</p>
         <div class="meter">
           <div class="lbls"><span>Metered API</span><span>Existing subscriptions</span></div>
           <div class="track"><div class="fill" style="width:72%"></div></div>
-          <p class="figure-cap">Spend shifts off per-token pricing as usage grows, instead of scaling linearly with it. Every run reports what it cost, per card and per employee.</p>
         </div>
+        <div style="margin-top:1.4rem;display:grid;gap:0.9rem">
+          <p style="color:var(--text-mid)"><strong style="color:var(--text)">Auto picks the model.</strong> Every run routes through Auto, which sends the job to the cheapest model that can actually do it, and steps up to a frontier model only when the work calls for it.</p>
+          <p style="color:var(--text-mid)"><strong style="color:var(--text)">Context stays lean.</strong> A long-running thread gets compressed and handed off with only what the next step needs, instead of dragging the whole history along and paying to re-read it every time.</p>
+          <p style="color:var(--text-mid)"><strong style="color:var(--text)">Subagents take the side work.</strong> Research, verification and narrow sub-tasks run in their own isolated calls, so the main job never pays premium-model rates for work a cheaper pass could do.</p>
+        </div>
+        <p class="figure-cap" style="margin-top:1rem">Every run reports what it cost, per card and per employee.</p>
       </div>
     </div>
   </div>
