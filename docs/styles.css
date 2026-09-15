@@ -269,7 +269,8 @@ section.tint { background: var(--bg-alt); }
 .grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 2.5rem; }
 .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.grid > .cell { background: var(--bg); padding: clamp(1.4rem, 3vw, 2rem); }
+.grid > .cell { background: var(--bg); padding: var(--cell-pad); }
+.grid { --cell-pad: clamp(1.4rem, 3vw, 2rem); }
 .tint .grid > .cell { background: var(--bg-alt); }
 .grid > .cell h3 { margin-bottom: 0.5rem; }
 .grid > .cell p { color: var(--text-mid); font-size: 0.96rem; }
@@ -284,7 +285,19 @@ section.tint { background: var(--bg-alt); }
    it, so no line is drawn there. The problem <p> is not :last-child, so it keeps its 1.1em
    bottom margin and the divider never sits flush against the text. */
 .grid.pairs > .cell { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
-.grid.pairs > .cell .answer { padding-top: 0.9rem; border-top: 1px solid var(--line-mid); }
+/* The answer is a panel, not a paragraph. It bleeds the full width of the cell and
+   drops the cell's own bottom padding so the two halves read as two blocks at a
+   glance instead of one column of body copy. It inverts against the cell: white on
+   the tinted section, tinted on a white one. Keep the negative margins tied to
+   --cell-pad, or the bleed drifts out of step with the cell padding at other widths. */
+.grid.pairs > .cell { padding-bottom: 0; }
+.grid.pairs > .cell .answer {
+  background: var(--bg-alt);
+  margin: 0 calc(-1 * var(--cell-pad));
+  padding: 1rem var(--cell-pad) var(--cell-pad);
+  border-top: 1px solid var(--line-mid);
+}
+.tint .grid.pairs > .cell .answer { background: var(--bg); }
 .grid.pairs > .cell .answer .lbl {
   display: block; margin-bottom: 0.4rem;
   font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
