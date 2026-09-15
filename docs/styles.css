@@ -86,7 +86,6 @@ section.tint { background: var(--bg-alt); }
   text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
   white-space: nowrap;
 }
-.wordmark .mark { width: 9px; height: 9px; background: var(--text); flex: none; }
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 1.4rem; }
 .nav-links a { font-size: 0.9rem; text-decoration: none; color: var(--text-mid); white-space: nowrap; }
 .nav-links a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
@@ -125,7 +124,6 @@ section.tint { background: var(--bg-alt); }
   .nav-links a { font-size: 0.8rem; }
   .nav .wrap { gap: 0.4rem; padding-left: 16px; padding-right: 16px; }
   .wordmark { font-size: 0.8rem; gap: 0.4rem; }
-  .wordmark .mark { width: 8px; height: 8px; }
   .btn-nav { padding: 0.45rem 0.45rem; font-size: 0.6rem; }
 }
 
